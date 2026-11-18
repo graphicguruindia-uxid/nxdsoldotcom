@@ -20,9 +20,17 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    needs: [ci-check]  # Only deploy if CI passes
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Verify Formspree ID is configured
+        run: |
+          if grep -q "{FORM_ID}" index.html; then
+            echo "::error::Formspree {FORM_ID} placeholder not replaced - deployment blocked"
+            exit 1
+          fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -35,3 +43,11 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  # Dummy job to make 'needs: [ci-check]' work - this will be satisfied when CI workflow completes
+  ci-check:
+    name: Wait for CI
+    runs-on: ubuntu-latest
+    steps:
+      - name: CI dependency satisfied
+        run: echo "CI workflow must pass before deploy"

@@ -1,0 +1,30 @@
+{
+  "name": "nxdsol-website",
+  "version": "1.0.0",
+  "description": "NXDSOL - AI & Machine Learning Consulting Website",
+  "private": true,
+  "scripts": {
+    "lint:css": "stylelint \"css/**/*.css\" --custom-syntax postcss-scss",
+    "lint:js": "eslint js/*.js",
+    "lint": "npm run lint:css && npm run lint:js",
+    "validate:html": "node -e \"const lint = require('html5-lint'); const fs = require('fs'); const html = fs.readFileSync('index.html', 'utf8'); lint(html, {}, (err, results) => { if (err) { console.error(err); process.exit(1); } results.messages.forEach(m => { console.log(m.type + ': ' + m.message + ' (line ' + m.line + ')'); }); console.log('Total: ' + results.messages.length + ' messages'); if (results.messages.some(m => m.type === 'error')) process.exit(1); });\"",
+    "check:links": "linkinator index.html --skip \"https://formspree.io/f/{FORM_ID}\" --skip-mail --retry-count 3 --concurrency 10",
+    "test": "npm run lint && npm run validate:html && npm run check:links"
+  },
+  "devDependencies": {
+    "@axe-core/cli": "^4.8.0",
+    "@eslint/js": "^9.0.0",
+    "eslint": "^9.0.0",
+    "globals": "^15.0.0",
+    "html5-lint": "^0.3.0",
+    "linkinator": "^8.1.0",
+    "postcss": "^8.4.0",
+    "postcss-scss": "^4.0.0",
+    "stylelint": "^16.0.0",
+    "stylelint-config-recess-order": "^5.0.0",
+    "stylelint-config-standard": "^36.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

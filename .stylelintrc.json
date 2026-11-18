@@ -1,0 +1,23 @@
+{
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-recess-order"
+  ],
+  "customSyntax": "postcss-scss",
+  "rules": {
+    "no-descending-specificity": null,
+    "declaration-empty-line-before": [
+      "never",
+      {
+        "ignore": ["after-declaration", "first-nested"]
+      }
+    ],
+    "selector-class-pattern": null,
+    "value-keyword-case": [
+      "lower",
+      {
+        "ignoreKeywords": ["svh"]
+      }
+    ]
+  }
+}

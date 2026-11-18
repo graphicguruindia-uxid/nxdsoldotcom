@@ -21,12 +21,22 @@ $RECYCLE.BIN/
 index-0.html
 /docs/superpowers/
 
+# Dependencies
+node_modules/
+package-lock.json
 
+# Tooling output
+.axe-results/
+coverage/
 
-# iOS
+# OS / editor
+.DS_Store
+*.swp
+.vscode/
+.idea/
 
-
-# Android
-
-
-# JSDoc
+# Local env
+.env
+.env.local
+.env.*.local
+*.log

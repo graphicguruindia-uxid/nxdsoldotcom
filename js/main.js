@@ -28,7 +28,7 @@ scrollBtn?.addEventListener('click', () => {
 });
 
 // Active section highlighting on nav links
-const sections = Array.from($$('section[id]')).map(s => {
+$$('section[id]').forEach(s => {
   const id = s.id;
   const obs = new IntersectionObserver(err => {
     err.forEach(entry => {
@@ -39,16 +39,31 @@ const sections = Array.from($$('section[id]')).map(s => {
   obs.observe(s);
 });
 
-// Statcounter goal tracking placeholder (would integrate analytics via event listeners)
-// Example usage: data-cta="hero-primary"
-['hero-primary','hero-secondary','contact-submit','mobile-cta'].forEach(name => {
-  const els = $$(`[data-cta="${name}"]`);
-  els.forEach(el => el.addEventListener('click', () => console.log(`Statcounter goal: ${name}`)));
-});
-
 // Formspree integration
 const form = $('#contactForm');
-const statusEl = $('#formStatus');
+const statusEl = $('#form-status');
+
+// CTA & goal tracking
+// Statcounter's free plan has no client-side event API. Goals are configured
+// in the Statcounter dashboard (conversion goal URL) and external/mailto link
+// clicks are auto-tracked as exit links by the standard snippet.
+// This module wires the hooks so the goals are measurable and future
+// analytics (GA4/Plausible) drop in without rewiring.
+function trackGoal(name) {
+  // Future-proof: push to dataLayer if GA4/Firebase tag is present
+  if (Array.isArray(window.dataLayer)) {
+    window.dataLayer.push({ event: 'goal', goal: name });
+  }
+  // Local session tally for debugging (inspect in DevTools: window.goals)
+  window.goals = window.goals || {};
+  window.goals[name] = (window.goals[name] || 0) + 1;
+}
+
+['hero-primary', 'hero-secondary', 'contact-submit', 'mobile-cta'].forEach(name => {
+  $$(`[data-cta="${name}"]`).forEach(el => {
+    el.addEventListener('click', () => trackGoal(name));
+  });
+});
 
 if (form) {
   form.addEventListener('submit', e => {
@@ -63,6 +78,7 @@ if (form) {
     })
       .then(r => r.ok ? r.json() : Promise.reject(r))
       .then(() => {
+        trackGoal('contact-form-success');
         statusEl.textContent = 'Thank you! Your message has been sent.';
         statusEl.setAttribute('role', 'status');
         form.reset();
