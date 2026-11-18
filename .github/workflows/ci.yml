@@ -1,0 +1,26 @@
+name: CI — Lint, Validate, Check
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  check:
+    name: Validate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: HTML Validation (Nu Html Checker)
+        uses: html5lib/html5-lint-action@v17
+        with:
+          folder: .
+          ignore_files: "index-0.html"
+
+      - name: Link Check (lychee)
+        uses: lycheeverse/lychee-action@v1.9.3
+        with:
+          args: --verbose --exclude-mail --exclude "https://formspree.io/f/\{FORM_ID\}" --max-retries 3 .
