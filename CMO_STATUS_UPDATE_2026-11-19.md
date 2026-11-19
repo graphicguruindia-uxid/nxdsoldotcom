@@ -9,7 +9,7 @@
 
 ## Summary
 
-Reviewing the AI Content Templates and Digital Business Planner architecture docs. Providing decisions on go-to-market strategy, content ownership, and product positioning.
+Created **Strategy Brief (NEX-12)** defining NXDSOL's market positioning, target segments, pricing, and go-to-market strategy. Created two subtasks for execution: NEX-15 (Formspree + Statcounter setup) and NEX-16 (Marketing Prep Work). Awaiting CEO review on key assumptions.
 
 ---
 
@@ -92,24 +92,22 @@ Reviewing the AI Content Templates and Digital Business Planner architecture doc
 
 ## Marketing Site Status
 
-The marketing site (nxdsol.com) is **production-ready** per CTO audit. Two items need completion:
+The marketing site (nxdsol.com) is **production-ready** per CTO audit. Two items need manual account creation (not code changes):
 
-1. **Formspree Integration** — CMO will:
-   - Set up Formspree account today
-   - Replace `{FORM_ID}` placeholder in `index.html`
-   - Test form submission + email delivery
+1. **Formspree Integration** — Requires CMO to:
+   - Create Formspree account at https://formspree.io
+   - Create contact form, get form ID
+   - Replace `{FORM_ID}` placeholder in `index.html` line 223
+   - Test form submission end-to-end
+   - **Created NEX-15** subtask for this
 
-2. **Statcounter Goal Tracking** — CMO will:
-   - Set up Statcounter project
-   - Implement goal tracking on:
-     - Hero CTA clicks ("Get Started")
-     - Services CTA clicks ("Learn More")
-     - Contact form submissions
-   - Update `js/main.js` with real Statcounter calls (currently `console.log`)
+2. **Statcounter Goal Tracking** — Requires CMO to:
+   - Create Statcounter project at https://statcounter.com
+   - Configure conversion goals in dashboard for: hero-primary, hero-secondary, contact-form-success, mobile-cta
+   - The JS `trackGoal(name)` in `js/main.js` is already wired to push to dataLayer
+   - **Created NEX-15** subtask for this
 
-**Timeline:** Both completed by EOD 2026-11-19
-
----
+**Timeline:** Manual account setup required before deployment to main (CI/CD blocks on `{FORM_ID}` placeholder)
 
 ## Go-to-Market Timeline
 
@@ -151,18 +149,27 @@ While engineering builds, CMO will prepare:
 
 ## Next Steps
 
-**CMO Immediate Actions (Today):**
-1. ✅ Set up Formspree + update `index.html`
-2. ✅ Implement Statcounter goal tracking
-3. ✅ Begin drafting 20 seed templates (Notion workspace)
-4. ✅ Create early adopter invite list (20-30 names)
+**Completed This Session:**
+- ✅ Created Strategy Brief (NEX-12) at `docs/STRATEGY_BRIEF_NEX-12.md`
+- ✅ Created NEX-15: Set up Formspree + Statcounter for Marketing Site
+- ✅ Created NEX-16: Marketing Prep Work — Blog, Waitlist, Outreach
 
-**Awaiting CEO Approval:**
+**CMO Immediate Actions (Pending CEO Review):**
+1. Set up Formspree + update `index.html` (NEX-15)
+2. Implement Statcounter goal tracking (NEX-15)
+3. Begin drafting 20 seed templates for AI Content Templates MVP (Notion workspace)
+4. Create early adopter invite list (50 names for beta outreach)
+
+**Awaiting CEO Approval on Strategy Brief:**
+- Target market priority: Dual market (consulting + SaaS) vs. prioritize one
+- Geography: India-first → SEA → global — correct?
+- Team: Solo founder + AI agents — any human hires planned?
+- Clients: Pre-revenue — any existing relationships to leverage?
+- Budget: $33.50/mo operating + $430 launch budget — approved?
+
+**Also Awaiting CEO Approval (from CTO open questions):**
 - Pricing model (freemium + subscription tiers)
 - CMO ownership of template content
 - Separate product strategy for Digital Business Planner
-- Marketing budget ($33.50/mo tools)
-
----
 
 **End of Update**
