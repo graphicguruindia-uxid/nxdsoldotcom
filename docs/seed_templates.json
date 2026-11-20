@@ -1,0 +1,277 @@
+{
+  "templates": [
+    {
+      "name": "Blog Post: How-to Guide",
+      "slug": "blog-how-to-guide",
+      "description": "Step-by-step guide to using our product.",
+      "category": "Blog Post",
+      "bodyTemplate": "\n\n{{intro}}\n\n<AI block=\"body\" tone=\"{{tone}}\" audience=\"{{audience}}\">Write a detailed how‑to guide for {{product}}, covering the key points: {{#each keyPoints}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}.\n</AI>\n\n{{conclusion}}",
+      "variables": {
+        "audience": "\"Your target audience description\"",
+        "tone": "\"Professional, friendly\"",
+        "product": "\"Your product name\"",
+        "keyPoints": ["\"Point 1\"", "\"Point 2\"", "\"Point 3\""]
+      },
+      "aiConfig": {
+        "model": "quality",
+        "temperature": 0.7,
+        "maxTokens": 1200,
+        "systemPrompt": "You are a senior copywriter crafting engaging blog posts."
+      }
+    },
+    {
+      "name": "Blog Post: Case Study",
+      "slug": "blog-case-study",
+      "description": "Case study highlighting a client success story.",
+      "category": "Blog Post",
+      "bodyTemplate": "\n\n{{intro}}\n\n<AI block=\"body\" tone=\"{{tone}}\" audience=\"{{audience}}\">Describe how {{clientName}} achieved results using {{product}}, detailing the challenges, solution, and outcomes.\n</AI>\n\n{{conclusion}}",
+      "variables": {
+        "audience": "\"Your target audience description\"",
+        "tone": "\"Professional, persuasive\"",
+        "clientName": "\"Client name\"",
+        "product": "\"Your product\""
+      },
+      "aiConfig": {
+        "model": "quality",
+        "temperature": 0.6,
+        "maxTokens": 1400,
+        "systemPrompt": "You are a copywriter telling a compelling case study."
+      }
+    },
+    {
+      "name": "Social Media: LinkedIn Post",
+      "slug": "linkedin-post",
+      "description": "LinkedIn post announcing a product release.",
+      "category": "Social Media",
+      "bodyTemplate": "{{intro}}\n\n<AI block=\"body\" tone=\"{{tone}}\" audience=\"{{audience}}\">Craft a LinkedIn post to promote the launch of {{product}}, highlighting key benefits in a concise, engaging format.\n</AI>",
+      "variables": {
+        "audience": "\"Industry professional\"",
+        "tone": "\"Professional and upbeat\"",
+        "product": "\"Your product name\""
+      },
+      "aiConfig": {
+        "model": "fast",
+        "temperature": 0.7,
+        "maxTokens": 600,
+        "systemPrompt": "You are a social media copywriter."
+      }
+    },
+    {
+      "name": "Social Media: Twitter Thread",
+      "slug": "twitter-thread",
+      "description": "Series of tweets forming a thread.",
+      "category": "Social Media",
+      "bodyTemplate": "{{intro}}\n\n<AI block=\"body\" tone=\"{{tone}}\" audience=\"{{audience}}\">Generate a 5‑tweet thread about the benefits of {{product}}.\n</AI>\n\n{{conclusion}}",
+      "variables": {
+        "audience": "\"Twitter users\"",
+        "tone": "\"Friendly, snappy\"",
+        "product": "\"Your product\""
+      },
+      "aiConfig": {
+        "model": "fast",
+        "temperature": 0.8,
+        "maxTokens": 1000,
+        "systemPrompt": "You are a content writer for Twitter."
+      }
+    },
+    {
+      "name": "Email: Welcome Sequence",
+      "slug": "welcome-sequence",
+      "description": "Series of welcome emails for new users.",
+      "category": "Email",
+      "bodyTemplate": "{{intro}}\n\n<AI block=\"body\" tone=\"{{tone}}\" audience=\"{{audience}}\">Write email #{{sequenceStep}} to welcome users to {{product}}, introducing key features and next steps.\n</AI>",
+      "variables": {
+        "audience": "\"New user\"",
+        "tone": "\"Warm, supportive\"",
+        "product": "\"Your product\"",
+        "sequenceStep": "\"1\""
+      },
+      "aiConfig": {
+        "model": "quality",
+        "temperature": 0.6,
+        "maxTokens": 800,
+        "systemPrompt": "You are a seasoned email copywriter."
+      }
+    },
+    {
+      "name": "Email: Promotion",
+      "slug": "promotion",
+      "description": "Promotional email to highlight a discount.",
+      "category": "Email",
+      "bodyTemplate": "{{intro}}\n\n<AI block=\"body\" tone=\"{{tone}}\" audience=\"{{audience}}\">Create a promotional email offering a limited‑time discount on {{product}}.\n</AI>",
+      "variables": {
+        "audience": "\"Prospecting lead\"",
+        "tone": "\"Persuasive\"",
+        "product": "\"Your product\""
+      },n
+      "aiConfig": {
+        "model": "quality",
+        "temperature": 0.65,
+        "maxTokens": 900,
+        "systemPrompt": "You are a copywriter for promotional emails."
+      }
+    },
+    {
+      "name": "Ad: Google Search",
+      "slug": "google-search-ad",
+      "description": "Text ad for Google Search.",
+      "category": "Ads",
+      "bodyTemplate": "{{intro}}\n\n<AI block=\"body\" tone=\"{{tone}}\" audience=\"{{audience}}\">Generate a Google Search ad for {{product}}, focusing on value proposition.\n</AI>",
+      "variables": {
+        "audience": "\"Internet consumer\"",
+        "tone": "\"Direct\"",
+        "product": "\"Your product\""
+      },
+      "aiConfig": {
+        "model": "fast",
+        "temperature": 0.75,
+        "maxTokens": 300,
+        "systemPrompt": "You are a copywriter for search ads."
+      }
+    },
+    {
+      "name": "SEO: Meta Description",
+      "slug": "seo-meta-desc",
+      "description": "Meta description for landing page.",
+      "category": "SEO",
+      "bodyTemplate": "{{intro}}\n\n<AI block=\"body\" tone=\"{{tone}}\" audience=\"{{audience}}\">Write a compelling meta description for {{product}}.\n</AI>",
+      "variables": {
+        "audience": "\"SEO audience\"",
+        "tone": "\"Concise, engaging\"",
+        "product": "\"Your product\""
+      },
+      "aiConfig": {
+        "model": "fast",
+        "temperature": 0.6,
+        "maxTokens": 150,
+        "systemPrompt": "You are a factual SEO writer."
+      }
+    },
+    {
+      "name": "Landing Page: Hero Copy",
+      "slug": "landing-hero-copy",
+      "description": "Hero section text for landing page.",
+      "category": "Landing Page",
+      "bodyTemplate": "{{intro}}\n\n<AI block=\"body\" tone=\"{{tone}}\" audience=\"{{audience}}\">Create hero copy for the landing page of {{product}}.\n</AI>",
+      "variables": {
+        "audience": "\"Visitors\"",
+        "tone": "\"Bold, concise\"",
+        "product": "\"Your product\""
+      },
+      "aiConfig": {
+        "model": "quality",
+        "temperature": 0.7,
+        "maxTokens": 250,
+        "systemPrompt": "You are a seasoned landing page copywriter."
+      }
+    },
+    {
+      "name": "Video Script: Intro",
+      "slug": "video-intro",
+      "description": "Intro video script.",
+      "category": "Video",
+      "bodyTemplate": "{{intro}}\n\n<AI block=\"body\" tone=\"{{tone}}\" audience=\"{{audience}}\">Write an intro script for a promotional video about {{product}}.\n</AI>",
+      "variables": {
+        "audience": "\"Prospects\"",
+        "tone": "\"Engaging, upbeat\"",
+        "product": "\"Your product\""
+      },
+      "aiConfig": {
+        "model": "quality",
+        "temperature": 0.8,
+        "maxTokens": 500,
+        "systemPrompt": "You are a video scriptwriter."
+      }
+    },
+    {
+      "name": "White Paper Outline",
+      "slug": "white-paper-outline",
+      "description": "Outline for a white paper.",
+      "category": "White Paper",
+      "bodyTemplate": "{{intro}}\n\n<AI block=\"body\" tone=\"{{tone}}\" audience=\"{{audience}}\">Generate an outline for a white paper on {{topic}}.\n</AI>",
+      "variables": {
+        "audience": "\"Industry experts\"",
+        "tone": "\"Academic, persuasive\"",
+        "topic": "\"Your topic\""
+      },
+      "aiConfig": {
+        "model": "quality",
+        "temperature": 0.55,
+        "maxTokens": 1500,
+        "systemPrompt": "You are an academic writer."
+      }
+    },
+    {
+      "name": "User Manual: Getting Started",
+      "slug": "user-manual-getting-started",
+      "description": "Guide for new users.",
+      "category": "User Manual",
+      "bodyTemplate": "{{intro}}\n\n<AI block=\"body\" tone=\"{{tone}}\" audience=\"{{audience}}\">Create a step‑by‑step guide for new users to get started with {{product}}.\n</AI>",
+      "variables": {
+        "audience": "\"New user\"",
+        "tone": "\"Clear, supportive\"",
+        "product": "\"Your product\""
+      },
+      "aiConfig": {
+        "model": "quality",
+        "temperature": 0.6,
+        "maxTokens": 1200,
+        "systemPrompt": "You are a technical writer."
+      }
+    },
+    {
+      "name": "FAQ Section",
+      "slug": "faq-section",
+      "description": "Frequently asked questions.",
+      "category": "FAQ",
+      "bodyTemplate": "{{intro}}\n\n<AI block=\"body\" tone=\"{{tone}}\" audience=\"{{audience}}\">Generate an FAQ section for {{product}} covering common questions.\n</AI>",
+      "variables": {
+        "audience": "\"General visitor\"",
+        "tone": "\"Professional, friendly\"",
+        "product": "\"Your product\""
+      },
+      "aiConfig": {
+        "model": "quality",
+        "temperature": 0.65,
+        "maxTokens": 800,
+        "systemPrompt": "You are a helpful FAQ writer."
+      }
+    },
+    {
+      "name": "Case Study: B2B Sales",
+      "slug": "case-study-b2b-sales",
+      "description": "Case study focusing on B2B sales.",
+      "category": "Case Study",
+      "bodyTemplate": "{{intro}}\n\n<AI block=\"body\" tone=\"{{tone}}\" audience=\"{{audience}}\">Describe how an enterprise applied {{product}} to boost sales, including metrics.\n</AI>",
+      "variables": {
+        "audience": "\"B2B decision maker\"",
+        "tone": "\"Data‑driven, persuasive\"",
+        "product": "\"Your product\""
+      },
+      "aiConfig": {
+        "model": "quality",
+        "temperature": 0.7,
+        "maxTokens": 1300,
+        "systemPrompt": "You are a persuasive case study writer."
+      }
+    },
+    {
+      "name": "Infographic Storyline",
+      "slug": "infographic-storyline",
+      "description": "Storyline for an infographic.",
+      "category": "Infographic",
+      "bodyTemplate": "{{intro}}\n\n<AI block=\"body\" tone=\"{{tone}}\" attendee=\"{{audience}}\">Outline a storyline for an infographic about {{product}}; include key data points.\n</AI>",
+      "variables": {
+        "audience": "\"Visual learners\"",
+        "tone": "\"Creative, engaging\"",
+        "product": "\"Your product\""
+      },
+      "aiConfig": {
+        "model": "quality",
+        "temperature": 0.75,
+        "maxTokens": 700,
+        "systemPrompt": "You are a creative copywriter for infographics."
+      }
+    }
+  ]
+}
