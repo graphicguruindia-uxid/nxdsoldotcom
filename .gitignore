@@ -28,6 +28,7 @@ package-lock.json
 # Tooling output
 .axe-results/
 coverage/
+test-results/
 
 # OS / editor
 .DS_Store
