@@ -49,5 +49,13 @@
 - ✅ CMO status update written: `CMO_STATUS_UPDATE_2026-11-19.md`
 - ⏳ Formspree `{FORM_ID}`: awaiting user to create Formspree account and replace placeholder
 
+## CMO Actions Completed (2026-11-20)
+- ✅ Glass-morphism UI enhancements applied (commit `9489925`):
+  - `.glass-card--light` + `.glass-input` CSS utilities (`css/style.css`)
+  - Hero, service cards, about panel, How-We-Work steps, contact form, navbar, mobile CTA, footer wrapped in glass surfaces
+  - `js/main.js`: Statcounter custom-event push added to `trackGoal()`
+- ✅ CMO status update written: `CMO_STATUS_UPDATE_2026-11-20.md` (commit `8f655c5`)
+- ⏳ Formspree `{FORM_ID}` still blocking GitHub Pages deploy (deploy.yml gate)
+
 ## Notes
 - All deletions were git-tracked, fully recoverable via git restore
