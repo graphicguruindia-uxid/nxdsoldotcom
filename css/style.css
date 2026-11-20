@@ -41,6 +41,199 @@
 }
 
 /* ==========================================================================
+   Dark Mode Tokens (prefers-color-scheme: dark)
+   ========================================================================== */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-surface: var(--color-surface-dark);
+        --color-surface-alt: #1a1d23;
+        --color-text: var(--color-text-on-dark);
+        --color-text-muted: #94a3b8;
+        --color-border: #334155;
+        --color-muted: #1e293b;
+    }
+
+    /* Bootstrap utility overrides for dark mode */
+    .bg-light {
+        background-color: var(--color-surface-alt) !important;
+    }
+
+    .bg-dark {
+        background-color: var(--color-surface-dark) !important;
+    }
+
+    .bg-black {
+        background-color: var(--color-surface-black) !important;
+    }
+
+    .text-white-50 {
+        color: rgb(248 249 250 / 70%) !important;
+    }
+
+    .text-muted {
+        color: var(--color-text-muted) !important;
+    }
+
+    .text-white {
+        color: var(--color-text-on-dark) !important;
+    }
+
+    .border-0 {
+        border: 0 !important;
+    }
+
+    /* Navbar - ensure it works in dark mode */
+    .navbar {
+        background-color: rgb(18 20 23 / 92%) !important;
+        border-bottom-color: rgb(255 255 255 / 10%) !important;
+    }
+
+    .navbar.scrolled {
+        background-color: rgb(18 20 23 / 98%) !important;
+        box-shadow: 0 2px 12px rgb(0 0 0 / 50%) !important;
+    }
+
+    .nav-link.active {
+        background-color: rgb(255 255 255 / 10%) !important;
+    }
+
+    /* Glass cards on dark backgrounds */
+    .glass-card {
+        color: var(--color-text-on-dark);
+        background: rgb(255 255 255 / 8%);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgb(255 255 255 / 12%);
+    }
+
+    .glass-card--light {
+        background: rgb(255 255 255 / 5%);
+        border: 1px solid rgb(255 255 255 / 8%);
+    }
+
+    /* Form inputs in dark mode */
+    .form-control {
+        color: var(--color-text-on-dark) !important;
+        background-color: rgb(255 255 255 / 8%) !important;
+        border-color: rgb(255 255 255 / 12%) !important;
+    }
+
+    .form-control:focus {
+        color: var(--color-text-on-dark) !important;
+        background-color: rgb(255 255 255 / 12%) !important;
+        border-color: var(--color-primary) !important;
+        box-shadow: var(--focus-ring) !important;
+    }
+
+    .form-control::placeholder {
+        color: rgb(248 249 250 / 50%) !important;
+    }
+
+    /* Glass input overrides */
+    .glass-input {
+        background: rgb(255 255 255 / 8%) !important;
+        border-color: rgb(255 255 255 / 12%) !important;
+    }
+
+    .glass-input:focus {
+        background: rgb(255 255 255 / 12%) !important;
+    }
+
+    /* Card shadows in dark mode */
+    .card {
+        box-shadow: 0 4px 16px rgb(0 0 0 / 30%) !important;
+    }
+
+    .service-card:hover {
+        box-shadow: 0 16px 32px rgb(0 0 0 / 40%) !important;
+    }
+
+    /* Mobile CTA bar */
+    .mobile-cta-bar {
+        background-color: rgb(18 20 23 / 98%) !important;
+        border-top-color: rgb(255 255 255 / 8%) !important;
+        box-shadow: 0 -4px 16px rgb(0 0 0 / 50%) !important;
+    }
+
+    /* Scroll top button */
+    .scroll-top-btn {
+        box-shadow: 0 4px 16px rgb(0 0 0 / 50%) !important;
+    }
+
+    /* Footer */
+    footer {
+        border-top-color: rgb(255 255 255 / 8%) !important;
+    }
+
+    /* Hero - ensure text contrast on dark */
+    .hero-section .glass-card {
+        background: rgb(18 20 23 / 85%);
+        border-color: rgb(255 255 255 / 12%);
+    }
+
+    /* Section headers */
+    .section-header p {
+        color: var(--color-text-muted);
+    }
+
+    /* About section */
+    #about .glass-card--light {
+        background: rgb(255 255 255 / 5%);
+        border-color: rgb(255 255 255 / 8%);
+    }
+
+    /* How We Work */
+    .step-number {
+        background-color: rgb(37 99 235 / 15%);
+    }
+
+    /* Contact form */
+    #contact .form-control {
+        background-color: rgb(255 255 255 / 8%) !important;
+        border-color: rgb(255 255 255 / 12%) !important;
+    }
+
+    #contact .form-control:focus {
+        background-color: rgb(255 255 255 / 12%) !important;
+    }
+}
+
+/* ==========================================================================
+   Light Mode Explicit Overrides (when user forces light via toggle later)
+   ========================================================================== */
+
+/* These ensure consistency when light mode is explicit */
+@media (prefers-color-scheme: light) {
+    :root {
+        --color-surface: #fff;
+        --color-surface-alt: #f5f7fa;
+        --color-text: #1E293B;
+        --color-text-muted: #475569;
+        --color-border: #E2E8F0;
+        --color-muted: #E9EFF8;
+    }
+
+    .bg-light {
+        background-color: var(--color-surface-alt) !important;
+    }
+
+    .bg-dark {
+        background-color: var(--color-surface-dark) !important;
+    }
+
+    .bg-black {
+        background-color: var(--color-surface-black) !important;
+    }
+
+    .text-white-50 {
+        color: rgb(248 249 250 / 70%) !important;
+    }
+
+    .text-muted {
+        color: var(--color-text-muted) !important;
+    }
+}
+
+/* ==========================================================================
    Base
    ========================================================================== */
 *,
@@ -378,8 +571,8 @@ footer {
 }
 
 /* ==========================================================================
-    Glassmorphism helper classes
-    ========================================================================== */
+   Glassmorphism helper classes
+   ========================================================================== */
 .glass-card {
     color: var(--color-foreground);
     background: rgb(255 255 255 / 10%);
@@ -396,20 +589,20 @@ footer {
 
 /* Glass form inputs */
 .glass-input {
-    background: rgba(255, 255, 255, 0.15) !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
     color: var(--color-text-on-dark) !important;
+    background: rgb(255 255 255 / 15%) !important;
+    border: 1px solid rgb(255 255 255 / 20%) !important;
 }
 
 .glass-input::placeholder {
-    color: rgba(248, 249, 250, 0.6);
+    color: rgb(248 249 250 / 60%);
 }
 
 .glass-input:focus {
-    background: rgba(255, 255, 255, 0.25) !important;
+    color: var(--color-text-on-dark) !important;
+    background: rgb(255 255 255 / 25%) !important;
     border-color: var(--color-primary) !important;
     box-shadow: var(--focus-ring) !important;
-    color: var(--color-text-on-dark) !important;
 }
 
 /* Glass card with image - ensure proper overflow handling */
