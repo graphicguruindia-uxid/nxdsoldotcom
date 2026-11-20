@@ -1,277 +1,193 @@
 {
   "templates": [
     {
-      "name": "Blog Post: How-to Guide",
-      "slug": "blog-how-to-guide",
-      "description": "Step-by-step guide to using our product.",
-      "category": "Blog Post",
-      "bodyTemplate": "\n\n{{intro}}\n\n<AI block=\"body\" tone=\"{{tone}}\" audience=\"{{audience}}\">Write a detailed how‑to guide for {{product}}, covering the key points: {{#each keyPoints}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}.\n</AI>\n\n{{conclusion}}",
-      "variables": {
-        "audience": "\"Your target audience description\"",
-        "tone": "\"Professional, friendly\"",
-        "product": "\"Your product name\"",
-        "keyPoints": ["\"Point 1\"", "\"Point 2\"", "\"Point 3\""]
-      },
-      "aiConfig": {
-        "model": "quality",
-        "temperature": 0.7,
-        "maxTokens": 1200,
-        "systemPrompt": "You are a senior copywriter crafting engaging blog posts."
-      }
+      "name": "Blog Post Outline",
+      "slug": "blog-post-outline",
+      "description": "Structured, scannable outline with H2/H3 hierarchy and word-count targets for each section.",
+      "category": "blog",
+      "variables": ["topic", "audience", "tone", "goal"],
+      "bodyTemplate": "<AI block=\"title\" tone=\"{{tone}}\">\nWrite 3 candidate blog post titles (under 60 characters) for a post about {{topic}} aimed at {{audience}}. The goal is to {{goal}}.\n</AI>\n\n# {{title}}\n\n<AI block=\"intro-brief\" tone=\"{{tone}}\">\nIn 2 sentences, state the reader's current problem with {{topic}} and promise a specific outcome by the end of the post. Audience: {{audience}}.\n</AI>\n\n## <AI block=\"section-1\" tone=\"{{tone}}\">\nSection 1 heading and 3-5 bullet points covering the foundational concepts of {{topic}}. Keep bullets under 15 words each.\n</AI>\n\n## <AI block=\"section-2\" tone=\"{{tone}}\">\nSection 2 heading and 3-5 bullet points: the step-by-step process or framework. Audience: {{audience}}.\n</AI>\n\n## <AI block=\"section-3\" tone=\"{{tone}}\">\nSection 3 heading and 3-5 bullet points: common mistakes, edge cases, or advanced considerations.\n</AI>\n\n## <AI block=\"conclusion\" tone=\"{{tone}}\">\nConclusion with a single clear call to action aligned to the goal: {{goal}}.\n</AI>",
+      "aiConfig": { "model": "quality", "temperature": 0.7, "maxTokens": 1500, "systemPrompt": "You are a senior copywriter crafting engaging blog post outlines." }
     },
     {
-      "name": "Blog Post: Case Study",
-      "slug": "blog-case-study",
-      "description": "Case study highlighting a client success story.",
-      "category": "Blog Post",
-      "bodyTemplate": "\n\n{{intro}}\n\n<AI block=\"body\" tone=\"{{tone}}\" audience=\"{{audience}}\">Describe how {{clientName}} achieved results using {{product}}, detailing the challenges, solution, and outcomes.\n</AI>\n\n{{conclusion}}",
-      "variables": {
-        "audience": "\"Your target audience description\"",
-        "tone": "\"Professional, persuasive\"",
-        "clientName": "\"Client name\"",
-        "product": "\"Your product\""
-      },
-      "aiConfig": {
-        "model": "quality",
-        "temperature": 0.6,
-        "maxTokens": 1400,
-        "systemPrompt": "You are a copywriter telling a compelling case study."
-      }
+      "name": "Blog Intro Generator",
+      "slug": "blog-intro",
+      "description": "Three distinct opening angles (pattern-interrupt, story, data) so you pick the hook that fits.",
+      "category": "blog",
+      "variables": ["topic", "audience", "tone", "key_message"],
+      "bodyTemplate": "<AI block=\"hook-data\" tone=\"{{tone}}\">\nOption A — Data-led intro (3-4 sentences): open with a striking statistic or fact about {{topic}} relevant to {{audience}}, then pivot to why it matters now.\n</AI>\n\n<AI block=\"hook-story\" tone=\"{{tone}}\">\nOption B — Story intro (3-4 sentences): a brief, realistic scenario where {{audience}} struggles with {{topic}}, then the turning point.\n</AI>\n\n<AI block=\"hook-interrupt\" tone=\"{{tone}}\">\nOption C — Pattern-interrupt intro (2-3 sentences): challenge a common belief about {{topic}} in one bold line, then state {{key_message}} as the counterpoint.\n</AI>",
+      "aiConfig": { "model": "quality", "temperature": 0.7, "maxTokens": 800, "systemPrompt": "You are a senior copywriter crafting compelling blog introductions." }
     },
     {
-      "name": "Social Media: LinkedIn Post",
+      "name": "Blog Conclusion Writer",
+      "slug": "blog-conclusion",
+      "description": "Tight closing paragraph with a single CTA — no fluff, no restating everything.",
+      "category": "blog",
+      "variables": ["topic", "key_takeaway", "cta_goal", "tone"],
+      "bodyTemplate": "<AI block=\"conclusion\" tone=\"{{tone}}\">\nWrite a blog post conclusion (4-5 sentences) about {{topic}}. Summarize in one sentence: {{key_takeaway}}. End with a single, specific call to action: {{cta_goal}}. Do not list all previous points.\n</AI>",
+      "aiConfig": { "model": "quality", "temperature": 0.6, "maxTokens": 400, "systemPrompt": "You are a senior copywriter crafting concise blog conclusions." }
+    },
+    {
+      "name": "Listicle Builder",
+      "slug": "listicle-builder",
+      "description": "Full listicle with a promise-driven title and consistent item structure (bold lead + 2-sentence expansion).",
+      "category": "blog",
+      "variables": ["topic", "audience", "tone", "item_count"],
+      "bodyTemplate": "<AI block=\"title\" tone=\"{{tone}}\">\nWrite a listicle title in the format \"{{number}} {{noun}}s That {{outcome}}\" or similar, using {{item_count}} items, about {{topic}} for {{audience}}. Under 65 characters.\n</AI>\n\n# {{title}}\n\n<AI block=\"intro\" tone=\"{{tone}}\">\nIntro paragraph (2-3 sentences): who this is for and what they'll be able to do after reading.\n</AI>\n\n<AI block=\"items\" tone=\"{{tone}}\">\nGenerate {{item_count}} list items about {{topic}}. Each item: bold one-line headline (max 12 words) + 2-sentence expansion with a concrete example. Items must be distinct — no near-duplicates.\n</AI>\n\n<AI block=\"recap\" tone=\"{{tone}}\">\nOne-sentence wrap-up naming the single most important item and why.\n</AI>",
+      "aiConfig": { "model": "quality", "temperature": 0.7, "maxTokens": 1200, "systemPrompt": "You are a senior copywriter crafting engaging listicles." }
+    },
+    {
+      "name": "LinkedIn Post",
       "slug": "linkedin-post",
-      "description": "LinkedIn post announcing a product release.",
-      "category": "Social Media",
-      "bodyTemplate": "{{intro}}\n\n<AI block=\"body\" tone=\"{{tone}}\" audience=\"{{audience}}\">Craft a LinkedIn post to promote the launch of {{product}}, highlighting key benefits in a concise, engaging format.\n</AI>",
-      "variables": {
-        "audience": "\"Industry professional\"",
-        "tone": "\"Professional and upbeat\"",
-        "product": "\"Your product name\""
-      },
-      "aiConfig": {
-        "model": "fast",
-        "temperature": 0.7,
-        "maxTokens": 600,
-        "systemPrompt": "You are a social media copywriter."
-      }
+      "description": "Hook-first LinkedIn post with short lines and a conversation starter in the closing line.",
+      "category": "social",
+      "variables": ["topic", "audience", "tone", "insight", "cta_goal"],
+      "bodyTemplate": "<AI block=\"hook\" tone=\"{{tone}}\">\nWrite the first line of a LinkedIn post about {{topic}}. It must stop the scroll in under 12 words. No hashtag, no \"I'm excited to announce.\"\n</AI>\n\n<AI block=\"body\" tone=\"{{tone}}\">\nWrite the body of the post (5-8 short lines, each under 15 words). Central insight: {{insight}}. Audience: {{audience}}. Use line breaks for rhythm. No corporate jargon.\n</AI>\n\n<AI block=\"closer\" tone=\"{{tone}}\">\nClosing line that invites a specific reply from {{audience}} — a question or prompt tied to {{cta_goal}}.\n</AI>",
+      "aiConfig": { "model": "fast", "temperature": 0.7, "maxTokens": 500, "systemPrompt": "You are a social media copywriter for LinkedIn." }
     },
     {
-      "name": "Social Media: Twitter Thread",
+      "name": "Twitter Thread",
       "slug": "twitter-thread",
-      "description": "Series of tweets forming a thread.",
-      "category": "Social Media",
-      "bodyTemplate": "{{intro}}\n\n<AI block=\"body\" tone=\"{{tone}}\" audience=\"{{audience}}\">Generate a 5‑tweet thread about the benefits of {{product}}.\n</AI>\n\n{{conclusion}}",
-      "variables": {
-        "audience": "\"Twitter users\"",
-        "tone": "\"Friendly, snappy\"",
-        "product": "\"Your product\""
-      },
-      "aiConfig": {
-        "model": "fast",
-        "temperature": 0.8,
-        "maxTokens": 1000,
-        "systemPrompt": "You are a content writer for Twitter."
-      }
+      "description": "8-12 tweet thread with a hook tweet, value ladder, and loop-back close.",
+      "category": "social",
+      "variables": ["topic", "audience", "tone", "key_points"],
+      "bodyTemplate": "<AI block=\"tweet-1\" tone=\"{{tone}}\">\nThread hook tweet (under 240 chars): bold claim or question about {{topic}} that earns a \"read more.\" Include \"(Thread 🧵)\".\n</AI>\n\n<AI block=\"body-tweets\" tone=\"{{tone}}\">\nWrite 6-9 tweets, one idea each (under 240 chars each), walking through: {{key_points}}. Each tweet should stand alone but build on the previous one. No hashtags in body tweets.\n</AI>\n\n<AI block=\"tweet-final\" tone=\"{{tone}}\">\nClosing tweet: one-line summary + CTA (follow / reply / link) for {{audience}}. Under 240 chars.\n</AI>",
+      "aiConfig": { "model": "fast", "temperature": 0.8, "maxTokens": 1000, "systemPrompt": "You are a Twitter thread writer." }
     },
     {
-      "name": "Email: Welcome Sequence",
+      "name": "Instagram Caption",
+      "slug": "instagram-caption",
+      "description": "Caption with a strong first line (shows before \"...more\"), natural hashtags, and a comment prompt.",
+      "category": "social",
+      "variables": ["topic", "audience", "tone", "goal"],
+      "bodyTemplate": "<AI block=\"first-line\" tone=\"{{tone}}\">\nFirst line of an Instagram caption about {{topic}} — this is all that shows before the \"...more\" fold. Make it count. Under 60 characters.\n</AI>\n\n<AI block=\"body\" tone=\"{{tone}}\">\nCaption body (3-6 short sentences) expanding on: {{topic}}. Audience: {{audience}}. Conversational, not salesy.\n</AI>\n\n<AI block=\"prompt\" tone=\"{{tone}}\">\nOne-line comment prompt that pushes toward the goal: {{goal}}.\n</AI>\n\n<AI block=\"hashtags\" tone=\"neutral\">\n8-12 relevant hashtags about {{topic}} for {{audience}}. Mix of high- and mid-volume. Plain list, no commentary.\n</AI>",
+      "aiConfig": { "model": "fast", "temperature": 0.7, "maxTokens": 500, "systemPrompt": "You are an Instagram copywriter." }
+    },
+    {
+      "name": "Facebook Ad",
+      "slug": "facebook-ad",
+      "description": "Primary text + headline + description combo that passes ad-policy tone and hooks in the first line.",
+      "category": "social",
+      "variables": ["product", "audience", "benefit", "offer", "tone", "cta_goal"],
+      "bodyTemplate": "<AI block=\"primary-text\" tone=\"{{tone}}\">\nFacebook ad primary text (400-800 characters). Product: {{product}}. Core benefit: {{benefit}}. Audience: {{audience}}. First line must hook. End with CTA: {{cta_goal}}. Avoid superlatives like \"best\" or \"guaranteed\" that trip ad policies.\n</AI>\n\n<AI block=\"headline\" tone=\"{{tone}}\">\nAd headline (under 40 characters) for {{product}} emphasizing {{benefit}}.\n</AI>\n\n<AI block=\"description\" tone=\"{{tone}}\">\nAd description (under 90 characters) reinforcing the offer: {{offer}}.\n</AI>",
+      "aiConfig": { "model": "fast", "temperature": 0.7, "maxTokens": 400, "systemPrompt": "You are a Facebook ads copywriter." }
+    },
+    {
+      "name": "Welcome Sequence",
       "slug": "welcome-sequence",
-      "description": "Series of welcome emails for new users.",
-      "category": "Email",
-      "bodyTemplate": "{{intro}}\n\n<AI block=\"body\" tone=\"{{tone}}\" audience=\"{{audience}}\">Write email #{{sequenceStep}} to welcome users to {{product}}, introducing key features and next steps.\n</AI>",
-      "variables": {
-        "audience": "\"New user\"",
-        "tone": "\"Warm, supportive\"",
-        "product": "\"Your product\"",
-        "sequenceStep": "\"1\""
-      },
-      "aiConfig": {
-        "model": "quality",
-        "temperature": 0.6,
-        "maxTokens": 800,
-        "systemPrompt": "You are a seasoned email copywriter."
-      }
+      "description": "3-email welcome series (value → proof → pitch) for new subscribers.",
+      "category": "email",
+      "variables": ["product", "audience", "brand_voice", "cta_goal"],
+      "bodyTemplate": "## Email 1 (sends immediately)\nSubject: <AI block=\"welcome-subject\" tone=\"warm\">\nSubject line (under 50 chars) that sets expectations for what subscribers get, for {{audience}}. No clickbait.\n</AI>\n\n<AI block=\"welcome-body\" tone=\"warm\">\nBody (120-180 words): introduce {{product}} in one line, deliver one piece of immediate value (tip or resource), and tell them what's coming in the next two emails. Sign off warmly.\n</AI>\n\n## Email 2 (sends day 2)\nSubject: <AI block=\"value-subject\" tone=\"warm\">\nSubject line (under 50 chars) previewing a specific useful tip for {{audience}}.\n</AI>\n\n<AI block=\"value-body\" tone=\"warm\">\nBody (120-180 words): one concrete, actionable tip related to {{product}}. No pitch. End with a light question to invite replies.\n</AI>\n\n## Email 3 (sends day 4)\nSubject: <AI block=\"pitch-subject\" tone=\"warm\">\nSubject line (under 50 chars) introducing the offer without pressure.\n</AI>\n\n<AI block=\"pitch-body\" tone=\"warm\">\nBody (120-180 words): one real use case or customer-style example of {{product}} in action, then a single clear CTA: {{cta_goal}}. Brand voice: {{brand_voice}}.\n</AI>",
+      "aiConfig": { "model": "quality", "temperature": 0.6, "maxTokens": 1200, "systemPrompt": "You are a seasoned email copywriter." }
     },
     {
-      "name": "Email: Promotion",
-      "slug": "promotion",
-      "description": "Promotional email to highlight a discount.",
-      "category": "Email",
-      "bodyTemplate": "{{intro}}\n\n<AI block=\"body\" tone=\"{{tone}}\" audience=\"{{audience}}\">Create a promotional email offering a limited‑time discount on {{product}}.\n</AI>",
-      "variables": {
-        "audience": "\"Prospecting lead\"",
-        "tone": "\"Persuasive\"",
-        "product": "\"Your product\""
-      },n
-      "aiConfig": {
-        "model": "quality",
-        "temperature": 0.65,
-        "maxTokens": 900,
-        "systemPrompt": "You are a copywriter for promotional emails."
-      }
+      "name": "Nurture Email",
+      "slug": "nurture-email",
+      "description": "Mid-funnel email that deepens a specific objection or use case without hard-selling.",
+      "category": "email",
+      "variables": ["product", "audience", "objection", "tone", "cta_goal"],
+      "bodyTemplate": "Subject: <AI block=\"subject\" tone=\"{{tone}}\">\nSubject line (under 50 chars) that acknowledges a real situation {{audience}} faces, tied to: {{objection}}.\n</AI>\n\n<AI block=\"body\" tone=\"{{tone}}\">\nEmail body (150-250 words). Open by naming the situation honestly. Spend most of the email addressing: {{objection}} — with evidence, a mini-example, or a framework. Product context: {{product}}. End with one soft CTA: {{cta_goal}}. No exclamation-point stacking, no \"act now\" pressure.\n</AI>",
+      "aiConfig": { "model": "quality", "temperature": 0.6, "maxTokens": 600, "systemPrompt": "You are a seasoned email copywriter." }
     },
     {
-      "name": "Ad: Google Search",
+      "name": "Promo Email",
+      "slug": "promo-email",
+      "description": "Direct, time-boxed promotion with the offer above the fold.",
+      "category": "email",
+      "variables": ["product", "offer", "deadline", "audience", "tone", "cta_goal"],
+      "bodyTemplate": "Subject: <AI block=\"subject\" tone=\"{{tone}}\">\nSubject line (under 50 chars) stating the offer plainly: {{offer}}. Include urgency from: {{deadline}} — without fake scarcity.\n</AI>\n\n<AI block=\"body\" tone=\"{{tone}}\">\nPromo email body (80-150 words). First two lines must state the offer: {{offer}} for {{audience}}. Then 2-3 benefit bullets tied to {{product}}. One deadline mention: {{deadline}}. One CTA: {{cta_goal}}.\n</AI>\n\n<AI block=\"ps\" tone=\"{{tone}}\">\nP.S. line (under 30 words) adding one reassurance (e.g., what's included, what's not required).\n</AI>",
+      "aiConfig": { "model": "quality", "temperature": 0.65, "maxTokens": 500, "systemPrompt": "You are a promotional email copywriter." }
+    },
+    {
+      "name": "Re-engagement Email",
+      "slug": "re-engagement-email",
+      "description": "For inactive subscribers — low-pressure, honest, one-click path back (or polite unsubscribe).",
+      "category": "email",
+      "variables": ["product", "audience", "last_activity", "tone", "value_update"],
+      "bodyTemplate": "Subject: <AI block=\"subject\" tone=\"{{tone}}\">\nSubject line (under 50 chars) that is honest about the reader being quiet for {{last_activity}}. Curious, not accusatory.\n</AI>\n\n<AI block=\"body\" tone=\"{{tone}}\">\nBody (100-150 words): acknowledge the silence in one line, share one genuinely new thing: {{value_update}}. Offer two paths — keep getting these (link) or unsubscribe with one click, framed respectfully. Product: {{product}}.\n</AI>",
+      "aiConfig": { "model": "quality", "temperature": 0.65, "maxTokens": 400, "systemPrompt": "You are a re-engagement email specialist." }
+    },
+    {
+      "name": "Google Search Ad",
       "slug": "google-search-ad",
-      "description": "Text ad for Google Search.",
-      "category": "Ads",
-      "bodyTemplate": "{{intro}}\n\n<AI block=\"body\" tone=\"{{tone}}\" audience=\"{{audience}}\">Generate a Google Search ad for {{product}}, focusing on value proposition.\n</AI>",
-      "variables": {
-        "audience": "\"Internet consumer\"",
-        "tone": "\"Direct\"",
-        "product": "\"Your product\""
-      },
-      "aiConfig": {
-        "model": "fast",
-        "temperature": 0.75,
-        "maxTokens": 300,
-        "systemPrompt": "You are a copywriter for search ads."
-      }
+      "description": "Headline set + descriptions within Google's character limits, built around intent keywords.",
+      "category": "ads",
+      "variables": ["product", "keywords", "benefit", "offer", "cta_goal"],
+      "bodyTemplate": "<AI block=\"headlines\" tone=\"neutral\">\nGenerate 5 Google Search ad headlines, each 30 characters max, for {{product}} targeting these search terms: {{keywords}}. Each headline must include one of the keywords or the benefit: {{benefit}}.\n</AI>\n\n<AI block=\"descriptions\" tone=\"neutral\">\nGenerate 2 Google ad descriptions, each 90 characters max, for {{product}}. Description 1: benefit-led ({{benefit}}). Description 2: offer-led ({{offer}}) with CTA: {{cta_goal}}.\n</AI>",
+      "aiConfig": { "model": "fast", "temperature": 0.5, "maxTokens": 300, "systemPrompt": "You are a Google Ads copywriter." }
     },
     {
-      "name": "SEO: Meta Description",
-      "slug": "seo-meta-desc",
-      "description": "Meta description for landing page.",
-      "category": "SEO",
-      "bodyTemplate": "{{intro}}\n\n<AI block=\"body\" tone=\"{{tone}}\" audience=\"{{audience}}\">Write a compelling meta description for {{product}}.\n</AI>",
-      "variables": {
-        "audience": "\"SEO audience\"",
-        "tone": "\"Concise, engaging\"",
-        "product": "\"Your product\""
-      },
-      "aiConfig": {
-        "model": "fast",
-        "temperature": 0.6,
-        "maxTokens": 150,
-        "systemPrompt": "You are a factual SEO writer."
-      }
+      "name": "Facebook Ad Variants",
+      "slug": "facebook-ad-variants",
+      "description": "Three angle variants (pain, outcome, social proof) of the same offer for A/B testing.",
+      "category": "ads",
+      "variables": ["product", "audience", "offer", "tone", "pain_point", "outcome"],
+      "bodyTemplate": "## Variant A — Pain-led\n<AI block=\"variant-a\" tone=\"{{tone}}\">\nFacebook ad primary text (300-500 chars) for {{product}}: open with the pain — {{pain_point}} — as {{audience}} experiences it daily, then present the offer: {{offer}}.\n</AI>\n\n## Variant B — Outcome-led\n<AI block=\"variant-b\" tone=\"{{tone}}\">\nFacebook ad primary text (300-500 chars) for {{product}}: open with the desired outcome — {{outcome}} — then explain how {{offer}} gets {{audience}} there.\n</AI>\n\n## Variant C — Social proof-led\n<AI block=\"variant-c\" tone=\"{{tone}}\">\nFacebook ad primary text (300-500 chars) for {{product}}: open with a believable customer-style result statement (generic, no invented named testimonials), then present {{offer}} for {{audience}}.\n</AI>\n\n<AI block=\"headlines\" tone=\"{{tone}}\">\nOne ad headline (under 40 chars) per variant, matching each angle.\n</AI>",
+      "aiConfig": { "model": "fast", "temperature": 0.7, "maxTokens": 800, "systemPrompt": "You are a Facebook ads copywriter specializing in A/B test variants." }
     },
     {
-      "name": "Landing Page: Hero Copy",
-      "slug": "landing-hero-copy",
-      "description": "Hero section text for landing page.",
-      "category": "Landing Page",
-      "bodyTemplate": "{{intro}}\n\n<AI block=\"body\" tone=\"{{tone}}\" audience=\"{{audience}}\">Create hero copy for the landing page of {{product}}.\n</AI>",
-      "variables": {
-        "audience": "\"Visitors\"",
-        "tone": "\"Bold, concise\"",
-        "product": "\"Your product\""
-      },
-      "aiConfig": {
-        "model": "quality",
-        "temperature": 0.7,
-        "maxTokens": 250,
-        "systemPrompt": "You are a seasoned landing page copywriter."
-      }
+      "name": "LinkedIn Sponsored Content",
+      "slug": "linkedin-sponsored",
+      "description": "B2B ad copy that reads like a native insight post, not an ad.",
+      "category": "ads",
+      "variables": ["product", "audience", "insight", "cta_goal", "tone"],
+      "bodyTemplate": "<AI block=\"hook\" tone=\"{{tone}}\">\nFirst line of LinkedIn sponsored ad (under 60 chars): an insight about {{audience}}'s industry that feels native, not promotional. Based on: {{insight}}.\n</AI>\n\n<AI block=\"body\" tone=\"{{tone}}\">\nAd body (3-5 short lines): extend {{insight}} into why it matters, then name {{product}} as the tool that addresses it. No buzzword stacking.\n</AI>\n\n<AI block=\"cta\" tone=\"{{tone}}\">\nCTA line (under 20 chars) + 10-character button label for: {{cta_goal}}.\n</AI>",
+      "aiConfig": { "model": "fast", "temperature": 0.6, "maxTokens": 400, "systemPrompt": "You are a LinkedIn B2B ads copywriter." }
     },
     {
-      "name": "Video Script: Intro",
-      "slug": "video-intro",
-      "description": "Intro video script.",
-      "category": "Video",
-      "bodyTemplate": "{{intro}}\n\n<AI block=\"body\" tone=\"{{tone}}\" audience=\"{{audience}}\">Write an intro script for a promotional video about {{product}}.\n</AI>",
-      "variables": {
-        "audience": "\"Prospects\"",
-        "tone": "\"Engaging, upbeat\"",
-        "product": "\"Your product\""
-      },
-      "aiConfig": {
-        "model": "quality",
-        "temperature": 0.8,
-        "maxTokens": 500,
-        "systemPrompt": "You are a video scriptwriter."
-      }
+      "name": "Meta Description",
+      "slug": "meta-description",
+      "description": "Three meta description variants at 140-160 characters with keyword placement and a CTA.",
+      "category": "seo",
+      "variables": ["page_topic", "primary_keyword", "audience", "tone", "cta_goal"],
+      "bodyTemplate": "<AI block=\"meta-1\" tone=\"{{tone}}\">\nMeta description (140-160 characters) for a page about {{page_topic}}. Include the keyword \"{{primary_keyword}}\" in the first 80 characters. End with a CTA tied to: {{cta_goal}}. Audience: {{audience}}.\n</AI>\n\n<AI block=\"meta-2\" tone=\"{{tone}}\">\nAlternative meta description (140-160 characters) for the same page — benefit-led, keyword \"{{primary_keyword}}\" present, different angle from variant 1.\n</AI>\n\n<AI block=\"meta-3\" tone=\"{{tone}}\">\nThird variant (140-160 characters) — question or curiosity angle, keyword present, no CTA.\n</AI>",
+      "aiConfig": { "model": "fast", "temperature": 0.5, "maxTokens": 300, "systemPrompt": "You are an SEO copywriter." }
     },
     {
-      "name": "White Paper Outline",
-      "slug": "white-paper-outline",
-      "description": "Outline for a white paper.",
-      "category": "White Paper",
-      "bodyTemplate": "{{intro}}\n\n<AI block=\"body\" tone=\"{{tone}}\" audience=\"{{audience}}\">Generate an outline for a white paper on {{topic}}.\n</AI>",
-      "variables": {
-        "audience": "\"Industry experts\"",
-        "tone": "\"Academic, persuasive\"",
-        "topic": "\"Your topic\""
-      },
-      "aiConfig": {
-        "model": "quality",
-        "temperature": 0.55,
-        "maxTokens": 1500,
-        "systemPrompt": "You are an academic writer."
-      }
+      "name": "Title Tags",
+      "slug": "title-tags",
+      "description": "Five title tag options at 50-60 characters, keyword-first, with brand slot.",
+      "category": "seo",
+      "variables": ["page_topic", "primary_keyword", "brand_name", "tone"],
+      "bodyTemplate": "<AI block=\"titles\" tone=\"{{tone}}\">\nGenerate 5 title tags for a page about {{page_topic}}. Each: 50-60 characters, keyword \"{{primary_keyword}}\" near the start, distinct angle (benefit, list, how-to, comparison, curiosity). Append \" | {{brand_name}}\" to each. Number them 1-5.\n</AI>",
+      "aiConfig": { "model": "fast", "temperature": 0.5, "maxTokens": 300, "systemPrompt": "You are an SEO copywriter." }
     },
     {
-      "name": "User Manual: Getting Started",
-      "slug": "user-manual-getting-started",
-      "description": "Guide for new users.",
-      "category": "User Manual",
-      "bodyTemplate": "{{intro}}\n\n<AI block=\"body\" tone=\"{{tone}}\" audience=\"{{audience}}\">Create a step‑by‑step guide for new users to get started with {{product}}.\n</AI>",
-      "variables": {
-        "audience": "\"New user\"",
-        "tone": "\"Clear, supportive\"",
-        "product": "\"Your product\""
-      },
-      "aiConfig": {
-        "model": "quality",
-        "temperature": 0.6,
-        "maxTokens": 1200,
-        "systemPrompt": "You are a technical writer."
-      }
+      "name": "Product Description",
+      "slug": "product-description",
+      "description": "SEO-aware product copy: lead paragraph, feature-to-benefit bullets, and closing line.",
+      "category": "seo",
+      "variables": ["product", "features", "audience", "tone", "differentiator"],
+      "bodyTemplate": "<AI block=\"lead\" tone=\"{{tone}}\">\nOpening product description paragraph (40-70 words) for {{product}}. Lead with the differentiator: {{differentiator}}. Weave in the top feature naturally for readers and search.\n</AI>\n\n<AI block=\"benefits\" tone=\"{{tone}}\">\nConvert these features into benefit bullets for {{audience}}: {{features}}. Each bullet: bold feature name + one sentence on what it means for the user. No feature left unexplained.\n</AI>\n\n<AI block=\"close\" tone=\"{{tone}}\">\nClosing line (under 25 words) that states who {{product}} is for and what to do next.\n</AI>",
+      "aiConfig": { "model": "quality", "temperature": 0.6, "maxTokens": 600, "systemPrompt": "You are a product copywriter." }
     },
     {
-      "name": "FAQ Section",
-      "slug": "faq-section",
-      "description": "Frequently asked questions.",
-      "category": "FAQ",
-      "bodyTemplate": "{{intro}}\n\n<AI block=\"body\" tone=\"{{tone}}\" audience=\"{{audience}}\">Generate an FAQ section for {{product}} covering common questions.\n</AI>",
-      "variables": {
-        "audience": "\"General visitor\"",
-        "tone": "\"Professional, friendly\"",
-        "product": "\"Your product\""
-      },
-      "aiConfig": {
-        "model": "quality",
-        "temperature": 0.65,
-        "maxTokens": 800,
-        "systemPrompt": "You are a helpful FAQ writer."
-      }
+      "name": "Cold Outreach",
+      "slug": "cold-outreach",
+      "description": "3-4 sentence cold email built on a specific trigger — no generic praise, no walls of text.",
+      "category": "sales",
+      "variables": ["prospect_company", "prospect_name", "trigger", "product", "outcome", "tone", "cta_goal"],
+      "bodyTemplate": "Subject: <AI block=\"subject\" tone=\"{{tone}}\">\nCold email subject line (under 45 chars) referencing the trigger: {{trigger}} — for {{prospect_company}}. Specific, not spammy.\n</AI>\n\n<AI block=\"body\" tone=\"{{tone}}\">\nCold email body (60-100 words) to {{prospect_name}} at {{prospect_company}}. Open with the specific trigger: {{trigger}} (1 sentence, no flattery). Bridge to why it matters: the outcome {{outcome}}. Mention {{product}} in one line only. Close with a low-friction CTA: {{cta_goal}}. Total under 100 words.\n</AI>",
+      "aiConfig": { "model": "quality", "temperature": 0.65, "maxTokens": 400, "systemPrompt": "You are a B2B cold outreach specialist." }
     },
     {
-      "name": "Case Study: B2B Sales",
-      "slug": "case-study-b2b-sales",
-      "description": "Case study focusing on B2B sales.",
-      "category": "Case Study",
-      "bodyTemplate": "{{intro}}\n\n<AI block=\"body\" tone=\"{{tone}}\" audience=\"{{audience}}\">Describe how an enterprise applied {{product}} to boost sales, including metrics.\n</AI>",
-      "variables": {
-        "audience": "\"B2B decision maker\"",
-        "tone": "\"Data‑driven, persuasive\"",
-        "product": "\"Your product\""
-      },
-      "aiConfig": {
-        "model": "quality",
-        "temperature": 0.7,
-        "maxTokens": 1300,
-        "systemPrompt": "You are a persuasive case study writer."
-      }
+      "name": "Sales Follow-up",
+      "slug": "sales-followup",
+      "description": "Short bump that adds value instead of \"just checking in.\"",
+      "category": "sales",
+      "variables": ["context", "product", "value_add", "tone", "cta_goal"],
+      "bodyTemplate": "Subject: <AI block=\"subject\" tone=\"{{tone}}\">\nFollow-up subject line (under 40 chars) referencing the prior conversation: {{context}}. No \"re:\" unless threading.\n</AI>\n\n<AI block=\"body\" tone=\"{{tone}}\">\nFollow-up email (40-80 words). Do NOT say \"just checking in.\" Instead deliver one piece of value related to: {{value_add}}, tied back to {{context}}. One CTA: {{cta_goal}}.\n</AI>",
+      "aiConfig": { "model": "quality", "temperature": 0.6, "maxTokens": 300, "systemPrompt": "You are a B2B sales follow-up specialist." }
     },
     {
-      "name": "Infographic Storyline",
-      "slug": "infographic-storyline",
-      "description": "Storyline for an infographic.",
-      "category": "Infographic",
-      "bodyTemplate": "{{intro}}\n\n<AI block=\"body\" tone=\"{{tone}}\" attendee=\"{{audience}}\">Outline a storyline for an infographic about {{product}}; include key data points.\n</AI>",
-      "variables": {
-        "audience": "\"Visual learners\"",
-        "tone": "\"Creative, engaging\"",
-        "product": "\"Your product\""
-      },
-      "aiConfig": {
-        "model": "quality",
-        "temperature": 0.75,
-        "maxTokens": 700,
-        "systemPrompt": "You are a creative copywriter for infographics."
-      }
+      "name": "Proposal Intro",
+      "slug": "proposal-intro",
+      "description": "First page of a proposal — situational awareness, agreed goal, and what the document contains.",
+      "category": "sales",
+      "variables": ["client", "situation", "goal", "scope", "tone"],
+      "bodyTemplate": "<AI block=\"opener\" tone=\"{{tone}}\">\nProposal opening (60-100 words) for {{client}}. Acknowledge their situation: {{situation}}. Frame the objective as: {{goal}}. Confident, partner-tone, no sales superlatives.\n</AI>\n\n<AI block=\"scope-summary\" tone=\"{{tone}}\">\n\"What this proposal covers\" paragraph (40-60 words) summarizing scope: {{scope}} — in plain language, three to four lines max.\n</AI>",
+      "aiConfig": { "model": "quality", "temperature": 0.55, "maxTokens": 400, "systemPrompt": "You are a B2B proposal writer." }
     }
   ]
 }
