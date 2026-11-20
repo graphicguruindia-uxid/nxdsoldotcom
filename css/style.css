@@ -313,13 +313,13 @@ body {
     color: #fff !important;
 }
 
-.logo-navbar {
+/*.logo-navbar {
     width: 32px;
     height: 32px;
     object-fit: contain;
     border-radius: var(--radius-sm);
-}
-
+}*/
+.logo-caption{font-size:10px;display:block;}
 .nav-link {
     padding: 0.5rem 0.85rem !important;
     cursor: pointer;
