@@ -57,5 +57,26 @@
 - ✅ CMO status update written: `CMO_STATUS_UPDATE_2026-11-20.md` (commit `8f655c5`)
 - ⏳ Formspree `{FORM_ID}` still blocking GitHub Pages deploy (deploy.yml gate)
 
+## UX Designer Actions Completed (2026-11-20, later)
+- ✅ **Favicon pipeline finished + wired into HTML**
+  - `images/favicon.ico` (32×32 ICO) regenerated from `NXDSOL_fav.ico.png` via `scripts/generate-assets.js`
+  - `index.html` now references `images/favicon.ico` (was previously a 1×1 base64 placeholder) plus 32px/16px PNG + apple-touch-icon
+  - Verified all four icon assets have correct, distinct dimensions:
+    - favicon-16.png → 16×16 (672 B)
+    - favicon-32.png → 32×32 (1.7 KB)
+    - apple-touch-icon.png → 180×180 (22 KB)
+    - logo-navbar.png → 96×32 (4.4 KB, well under 30 KB budget)
+- ✅ **Corrupted logo sources removed**
+  - `NXDSOL_logo_restored.png` / `NXDSOL_logo_restored2.png` were UTF‑16 text dumps masquerading as PNGs (unusable by sharp) — deleted
+  - Existing `logo-navbar.png` retained (valid, referenced by navbar + footer)
+- ✅ **Script hygiene**
+  - Kept `scripts/generate-assets.js` (reproducible asset pipeline)
+  - Removed throwaway debug scripts `check-files.js`, `check-fav.js`
+- ✅ **Verification re-run after changes**
+  - `npm run lint:js` → PASS (0 errors)
+  - `npm run lint:css` → PASS (0 errors)
+  - `npm run validate:html` → only the known `{FORM_ID}` placeholder error + 3 non-blocking info messages
+- ✅ **eslint.config.js** `_statcounter` global declared (fixes no-undef for Statcounter custom event API)
+
 ## Notes
 - All deletions were git-tracked, fully recoverable via git restore
