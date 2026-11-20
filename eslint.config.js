@@ -13,6 +13,7 @@ export default [
         IntersectionObserver: "readonly",
         cancelAnimationFrame: "readonly",
         requestAnimationFrame: "readonly",
+        _statcounter: "readonly",
       },
     },
     rules: {
