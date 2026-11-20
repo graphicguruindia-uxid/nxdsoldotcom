@@ -78,7 +78,7 @@
 
     <!-- Navigation -->
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" aria-label="Main navigation">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top glass-card" id="mainNav" aria-label="Main navigation" style="background: rgba(0, 0, 0, 0.6); border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
             <div class="container">
                 <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="#home" aria-label="NXDSOL Home">
                     <img src="images/logo-navbar.png" alt="" width="32" height="32" class="logo-navbar" aria-hidden="true">
@@ -105,12 +105,14 @@
         <!-- Section 1: Hero -->
         <section id="home" class="hero-section d-flex align-items-center" aria-labelledby="hero-title">
             <div class="container text-center text-white">
-                <span class="eyebrow d-block mb-3">AI & Machine Learning Consulting</span>
-                <h1 id="hero-title" class="display-3 fw-bold mb-4">Transform Your Business with <span class="text-primary">Intelligence</span></h1>
-                <p class="lead mb-5 max-w-2xl mx-auto">We leverage cutting-edge AI and Machine Learning to automate processes, predict trends, and drive growth for forward-thinking enterprises.</p>
-                <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
-                    <a href="#contact" class="btn btn-primary btn-lg px-5" data-cta="hero-primary">Book a Free Consultation</a>
-                    <a href="mailto:info@nxdsol.com?subject=Inquiry%20from%20NXDSOL%20website" class="btn btn-outline-light btn-lg px-5" data-cta="hero-secondary">Email Us</a>
+                <div class="glass-card p-4 p-md-5 rounded mx-auto" style="max-width: 720px;">
+                    <span class="eyebrow d-block mb-3">AI & Machine Learning Consulting</span>
+                    <h1 id="hero-title" class="display-3 fw-bold mb-4">Transform Your Business with <span class="text-primary">Intelligence</span></h1>
+                    <p class="lead mb-5 max-w-2xl mx-auto">We leverage cutting-edge AI and Machine Learning to automate processes, predict trends, and drive growth for forward-thinking enterprises.</p>
+                    <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+                        <a href="#contact" class="btn btn-primary btn-lg px-5" data-cta="hero-primary">Book a Free Consultation</a>
+                        <a href="mailto:info@nxdsol.com?subject=Inquiry%20from%20NXDSOL%20website" class="btn btn-outline-light btn-lg px-5" data-cta="hero-secondary">Email Us</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -125,7 +127,7 @@
                 <div class="row g-4">
                     <!-- Service 1 -->
                     <div class="col-md-4">
-                        <article class="card h-100 border-0 shadow-sm p-4 text-center service-card">
+                        <article class="card h-100 border-0 shadow-sm p-4 text-center service-card glass-card glass-card--light">
                             <div class="mb-3 text-primary" aria-hidden="true">
                                 <svg class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 3v2m0 14v2m-9-9h2m14 0h2M5.6 5.6l1.4 1.4m11.3 11.3l1.4 1.4M5.6 18.4l1.4-1.4m11.3-11.3l1.4-1.4"/><path d="M12 14a2 2 0 100-4 2 2 0 000 4z"/></svg>
                             </div>
@@ -135,7 +137,7 @@
                     </div>
                     <!-- Service 2 -->
                     <div class="col-md-4">
-                        <article class="card h-100 border-0 shadow-sm p-4 text-center service-card">
+                        <article class="card h-100 border-0 shadow-sm p-4 text-center service-card glass-card glass-card--light">
                             <div class="mb-3 text-primary" aria-hidden="true">
                                 <svg class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
                             </div>
@@ -145,7 +147,7 @@
                     </div>
                     <!-- Service 3 -->
                     <div class="col-md-4">
-                        <article class="card h-100 border-0 shadow-sm p-4 text-center service-card">
+                        <article class="card h-100 border-0 shadow-sm p-4 text-center service-card glass-card glass-card--light">
                             <div class="mb-3 text-primary" aria-hidden="true">
                                 <svg class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
                             </div>
@@ -162,17 +164,21 @@
             <div class="container py-5">
                 <div class="row align-items-center">
                     <div class="col-lg-6 mb-4 mb-lg-0">
-                        <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="AI technology and data visualization" class="img-fluid rounded shadow" width="800" height="533" loading="lazy" decoding="async">
+                        <div class="glass-card overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="AI technology and data visualization" class="img-fluid" width="800" height="533" loading="lazy" decoding="async">
+                        </div>
                     </div>
                     <div class="col-lg-6 ps-lg-5">
-                        <h2 id="about-title" class="fw-bold mb-4">Why Choose NXDSOL?</h2>
-                        <p class="lead text-muted mb-4">We don't just write code; we build the future of your business.</p>
-                        <ul class="list-unstyled mb-5">
-                            <li class="mb-3"><svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> <strong>Data-Driven Strategy:</strong> Every decision is backed by deep learning models.</li>
-                            <li class="mb-3"><svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> <strong>Scalable Architecture:</strong> Solutions that grow as your data grows.</li>
-                            <li class="mb-3"><svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> <strong>Human-Centric AI:</strong> Technology designed to augment human potential, not replace it.</li>
-                        </ul>
-                        <p class="text-muted small">Hyderabad-based · AI/ML specialists · End-to-end delivery</p>
+                        <div class="glass-card glass-card--light p-4 p-md-5 h-100">
+                            <h2 id="about-title" class="fw-bold mb-4">Why Choose NXDSOL?</h2>
+                            <p class="lead text-muted mb-4">We don't just write code; we build the future of your business.</p>
+                            <ul class="list-unstyled mb-5">
+                                <li class="mb-3"><svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> <strong>Data-Driven Strategy:</strong> Every decision is backed by deep learning models.</li>
+                                <li class="mb-3"><svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> <strong>Scalable Architecture:</strong> Solutions that grow as your data grows.</li>
+                                <li class="mb-3"><svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> <strong>Human-Centric AI:</strong> Technology designed to augment human potential, not replace it.</li>
+                            </ul>
+                            <p class="text-muted small">Hyderabad-based · AI/ML specialists · End-to-end delivery</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -187,21 +193,21 @@
                 </header>
                 <div class="row g-4 text-center">
                     <div class="col-md-4">
-                        <div class="p-4">
+                        <div class="p-4 glass-card glass-card--light h-100">
                             <div class="step-number mb-3">01</div>
                             <h3 class="h5 fw-bold mb-2">Discover</h3>
                             <p class="text-muted">We audit your data, processes, and goals to identify high-impact AI opportunities.</p>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="p-4">
+                        <div class="p-4 glass-card glass-card--light h-100">
                             <div class="step-number mb-3">02</div>
                             <h3 class="h5 fw-bold mb-2">Build</h3>
                             <p class="text-muted">We design, train, and validate custom models tailored to your business context.</p>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="p-4">
+                        <div class="p-4 glass-card glass-card--light h-100">
                             <div class="step-number mb-3">03</div>
                             <h3 class="h5 fw-bold mb-2">Scale</h3>
                             <p class="text-muted">We deploy with monitoring, retraining pipelines, and knowledge transfer to your team.</p>
@@ -220,20 +226,20 @@
                 </header>
                 <div class="row justify-content-center">
                     <div class="col-lg-6 mb-4 mb-lg-0">
-                        <form id="contactForm" action="https://formspree.io/f/{FORM_ID}" method="POST" novalidate>
+                        <form id="contactForm" action="https://formspree.io/f/{FORM_ID}" method="POST" novalidate class="glass-card p-4 p-md-5">
                             <input type="hidden" name="_gotcha" value="" tabindex="-1" autocomplete="off">
                             <input type="hidden" name="_subject" value="NXDSOL website inquiry">
                             <div class="mb-3">
                                 <label for="name" class="form-label visually-hidden">Your Name</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required autocomplete="name" aria-required="true">
+                                <input type="text" class="form-control glass-input" id="name" name="name" placeholder="Your Name" required autocomplete="name" aria-required="true">
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label visually-hidden">Your Email</label>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" required autocomplete="email" aria-required="true">
+                                <input type="email" class="form-control glass-input" id="email" name="email" placeholder="Your Email" required autocomplete="email" aria-required="true">
                             </div>
                             <div class="mb-3">
                                 <label for="message" class="form-label visually-hidden">How can we help you?</label>
-                                <textarea class="form-control" id="message" name="message" rows="4" placeholder="How can we help you?" required aria-required="true"></textarea>
+                                <textarea class="form-control glass-input" id="message" name="message" rows="4" placeholder="How can we help you?" required aria-required="true"></textarea>
                             </div>
                             <div class="d-grid">
                                 <button type="submit" class="btn btn-primary btn-lg" data-cta="contact-submit">
@@ -245,7 +251,7 @@
                         </form>
                     </div>
                     <div class="col-lg-5 offset-lg-1">
-                        <div class="contact-info p-4 bg-white bg-opacity-10 rounded">
+                        <div class="contact-info p-4 glass-card h-100">
                             <h3 class="h5 fw-bold mb-3">Prefer Email?</h3>
                             <p class="text-white-50 mb-3">Write to us directly and we'll respond within 24 hours.</p>
                             <div class="d-flex align-items-center gap-2 mb-3">
@@ -266,12 +272,12 @@
     </main>
 
     <!-- Sticky Mobile CTA Bar -->
-    <div class="mobile-cta-bar d-lg-none" id="mobileCtaBar" aria-hidden="true" role="complementary">
+    <div class="mobile-cta-bar d-lg-none glass-card" id="mobileCtaBar" aria-hidden="true" role="complementary" style="background: rgba(18, 20, 23, 0.9); border-top: 1px solid rgba(255, 255, 255, 0.1);">
         <a href="#contact" class="btn btn-primary w-100 py-3" data-cta="mobile-cta">Book a Free Consultation</a>
     </div>
 
     <!-- Footer -->
-    <footer class="py-4 text-center text-white-50 bg-black" role="contentinfo">
+    <footer class="py-4 text-center text-white-50 bg-black glass-card" role="contentinfo" style="border-top: 1px solid rgba(255, 255, 255, 0.1);">
         <div class="container">
             <div class="d-flex flex-column flex-sm-row justify-content-between gap-2 mb-3">
                 <a href="#home" class="navbar-brand fw-bold d-flex align-items-center gap-2 text-white" aria-label="NXDSOL Home">

@@ -388,6 +388,48 @@ footer {
     border-radius: var(--radius-md);
 }
 
+/* Light-context variant for glass surfaces over light backgrounds */
+.glass-card--light {
+    background: rgb(255 255 255 / 70%);
+    border: 1px solid rgb(226 232 240 / 90%);
+}
+
+/* Glass form inputs */
+.glass-input {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: var(--color-text-on-dark) !important;
+}
+
+.glass-input::placeholder {
+    color: rgba(248, 249, 250, 0.6);
+}
+
+.glass-input:focus {
+    background: rgba(255, 255, 255, 0.25) !important;
+    border-color: var(--color-primary) !important;
+    box-shadow: var(--focus-ring) !important;
+    color: var(--color-text-on-dark) !important;
+}
+
+/* Glass card with image - ensure proper overflow handling */
+.glass-card > img,
+.glass-card > picture > img {
+    border-radius: var(--radius-md);
+    transition: transform 0.4s ease;
+}
+
+.glass-card:hover > img,
+.glass-card:hover > picture > img {
+    transform: scale(1.03);
+}
+
+/* Ensure glass cards on dark sections have proper text color */
+section.bg-dark .glass-card,
+section#contact .glass-card {
+    color: var(--color-text-on-dark);
+}
+
 /* ==========================================================================
    Responsive
    ========================================================================== */

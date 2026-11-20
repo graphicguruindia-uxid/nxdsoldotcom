@@ -57,6 +57,11 @@ function trackGoal(name) {
   // Local session tally for debugging (inspect in DevTools: window.goals)
   window.goals = window.goals || {};
   window.goals[name] = (window.goals[name] || 0) + 1;
+
+  // Statcounter custom event tracking
+  if (typeof _statcounter !== 'undefined') {
+    _statcounter.push({ 'sc_event': name });
+  }
 }
 
 ['hero-primary', 'hero-secondary', 'contact-submit', 'mobile-cta'].forEach(name => {
