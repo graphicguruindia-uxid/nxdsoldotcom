@@ -147,9 +147,14 @@ While engineering builds, CMO will prepare:
 
 ---
 
+---
+
 ## Next Steps
 
-**Completed This Session:**
+- ✅ Feature branch `feature/marketing-docs-nov-2026` created and pushed to GH (PR ready for review)
+- ✅ Per NEX-5 (Git Gatekeeper), awaiting CEO/CTO approval before merge to `main`
+
+**Completed This Session:****
 - ✅ Created Strategy Brief (NEX-12) at `docs/STRATEGY_BRIEF_NEX-12.md`
 - ✅ Created NEX-15: Set up Formspree + Statcounter for Marketing Site
 - ✅ Created NEX-16: Marketing Prep Work — Blog, Waitlist, Outreach
