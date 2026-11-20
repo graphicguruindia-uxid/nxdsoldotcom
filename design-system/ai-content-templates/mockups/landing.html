@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mockup — Landing | AI Content Templates</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="mockups.css">
+<style>
+  /* landing-specific */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .nav__inner {
+    max-width: 1200px; margin: 0 auto; padding: 0 24px;
+    height: 64px; display: flex; align-items: center; gap: 32px;
+  }
+  .nav__logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.125rem; color: var(--fg); text-decoration: none; }
+  .nav__logo .mark {
+    width: 32px; height: 32px; border-radius: var(--r-sm);
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: #fff; display: inline-flex; align-items: center; justify-content: center;
+    font-size: 0.8125rem; font-weight: 800;
+  }
+  .nav__links { display: flex; gap: 4px; flex: 1; }
+  .nav__link { padding: 8px 14px; border-radius: var(--r-sm); font-size: 0.9375rem; font-weight: 500; color: var(--muted-fg); text-decoration: none; transition: all 200ms ease; }
+  .nav__link:hover { color: var(--fg); background: var(--surface-muted); }
+  .nav__cta { display: flex; gap: 12px; align-items: center; }
+  .nav__signin { font-size: 0.9375rem; font-weight: 600; color: var(--muted-fg); text-decoration: none; }
+  .nav__signin:hover { color: var(--primary); }
+
+  .hero {
+    position: relative;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    color: #fff;
+    padding: 96px 0 112px;
+    overflow: hidden;
+  }
+  .hero::after { content: ""; position: absolute; inset: 0; background: rgba(15,23,42,0.55); pointer-events: none; }
+  .hero__inner { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 0 24px; text-align: center; }
+  .hero__eyebrow { font-size: 0.875rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 20px; }
+  .hero__h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 24px; }
+  .hero__sub { font-size: 1.25rem; font-weight: 400; line-height: 1.55; color: rgba(255,255,255,0.85); max-width: 640px; margin: 0 auto 36px; }
+  .hero__ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
+  .hero__trust { font-size: 0.875rem; color: rgba(255,255,255,0.6); }
+  .hero__mock {
+    position: relative; z-index: 1;
+    max-width: 720px; margin: 56px auto 0;
+    background: var(--glass);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: var(--r-panel);
+    box-shadow: var(--shadow-xl);
+    color: var(--fg);
+    text-align: left;
+    overflow: hidden;
+  }
+  .hero__mock-bar { display: flex; gap: 6px; padding: 12px 16px; border-bottom: 1px solid rgba(0,0,0,0.06); }
+  .hero__mock-bar span { width: 10px; height: 10px; border-radius: 50%; background: var(--border-strong); }
+  .hero__mock-body { padding: 24px; display: grid; grid-template-columns: 160px 1fr; gap: 24px; }
+  .hero__mock-side { display: flex; flex-direction: column; gap: 12px; }
+  .mock-field { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 10px 12px; }
+  .mock-field b { display: block; font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--faint-fg); margin-bottom: 4px; }
+  .mock-field i { display: block; height: 8px; border-radius: 4px; background: var(--surface-muted); font-style: normal; }
+  .mock-generate { background: var(--accent); color: #fff; border-radius: var(--r-md); padding: 10px; font-size: 0.8125rem; font-weight: 600; text-align: center; }
+  .hero__mock-canvas { display: flex; flex-direction: column; gap: 12px; }
+  .mock-block { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--primary); border-radius: var(--r-sm); padding: 14px 16px; }
+  .mock-block .lbl { font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--faint-fg); margin-bottom: 6px; }
+  .mock-block p { font-size: 0.8125rem; color: var(--muted-fg); line-height: 1.5; }
+
+  .problem { background: var(--surface); padding: 80px 0; border-bottom: 1px solid var(--border); }
+  .problem__inner { max-width: 680px; margin: 0 auto; padding: 0 24px; text-align: center; }
+  .problem h2 { font-size: 2rem; font-weight: 700; margin-bottom: 24px; }
+  .problem__copy { font-size: 1.125rem; line-height: 1.7; color: var(--muted-fg); }
+  .problem__pull {
+    margin-top: 32px; text-align: left;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: var(--r-card);
+    box-shadow: var(--shadow-sm);
+    padding: 24px 28px;
+    font-size: 1.125rem; font-weight: 600; font-style: italic; color: var(--primary);
+  }
+
+  .features { padding: 96px 0; }
+  .features__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .feature-card {
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(226,232,240,0.8);
+    border-radius: var(--r-panel);
+    box-shadow: var(--shadow-sm);
+    padding: 32px;
+    transition: all 200ms ease;
+  }
+  .feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+  .feature-card .icon {
+    width: 48px; height: 48px; border-radius: var(--r-md);
+    background: rgba(37,99,235,0.1); color: var(--primary);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px;
+  }
+  .feature-card .icon svg { width: 24px; height: 24px; }
+  .feature-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 10px; }
+  .feature-card p { font-size: 1rem; color: var(--muted-fg); line-height: 1.6; }
+
+  @media (max-width: 1023px) { .features__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 767px) {
+    .features__grid { grid-template-columns: 1fr; }
+    .hero { padding: 72px 0 80px; }
+    .hero__mock-body { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Main">
+  <div class="nav__inner">
+    <a class="nav__logo" href="#"><span class="mark">NX</span> NXDSOL</a>
+    <div class="nav__links">
+      <a class="nav__link" href="#features">Features</a>
+      <a class="nav__link" href="#templates">Templates</a>
+      <a class="nav__link" href="#pricing">Pricing</a>
+      <a class="nav__link" href="#faq">FAQ</a>
+    </div>
+    <div class="nav__cta">
+      <a class="nav__signin" href="#">Sign in</a>
+      <a class="btn btn--accent" href="#pricing">Start Free</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero__inner">
+    <p class="hero__eyebrow">AI Content Templates</p>
+    <h1 class="hero__h1">Great content, on demand.</h1>
+    <p class="hero__sub">Pick a proven template, fill in your audience, tone, and key points — and get a finished, on-brand draft in minutes. Regenerate any section, export in the format you need, and get back to strategy.</p>
+    <div class="hero__ctas">
+      <a class="btn btn--accent" href="#pricing">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3m6.364-.364-2.121 2.121M21 12h-3M3 12h3m.636 6.364 2.121-2.121M12 18v3M9.343 5.343l2.121 2.121"/><circle cx="12" cy="12" r="4"/></svg>
+        Start free — no credit card
+      </a>
+      <a class="btn btn--ghost-light" href="#templates">See the template library</a>
+    </div>
+    <p class="hero__trust">Free tier: 100 generations/month · No credit card · Cancel anytime</p>
+
+    <div class="hero__mock" role="img" aria-label="Preview of the generation workspace showing template variables and a streaming draft">
+      <div class="hero__mock-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+      <div class="hero__mock-body">
+        <div class="hero__mock-side">
+          <div class="mock-field"><b>Audience</b><i style="width:90%"></i></div>
+          <div class="mock-field"><b>Tone</b><i style="width:60%"></i></div>
+          <div class="mock-field"><b>Key points</b><i style="width:100%"></i><i style="width:75%; margin-top:6px"></i></div>
+          <div class="mock-generate">Generate</div>
+        </div>
+        <div class="hero__mock-canvas">
+          <div class="mock-block"><span class="lbl">Hook</span><p>Most content tools give you a chat box and a hope. Ours gives you 21 proven structures…</p></div>
+          <div class="mock-block"><span class="lbl">Body</span><p>Short lines, real rhythm, no corporate jargon — streaming in live…</p></div>
+          <div class="mock-block" style="border-left-color: var(--faint-fg)"><span class="lbl">Closer</span><p style="color:var(--faint-fg)">Generating…</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="problem" aria-labelledby="problem-h">
+  <div class="problem__inner">
+    <h2 id="problem-h">The blank page is expensive.</h2>
+    <p class="problem__copy">A single LinkedIn post can eat an afternoon. A cold outreach sequence takes three drafts and a shrug. A landing page brief means a writer, a revision, and a deadline that slipped. You didn't start your company to lose hours to formatting — you lost them anyway.</p>
+    <blockquote class="problem__pull">Every hour spent fighting the blank page is an hour not spent selling.</blockquote>
+  </div>
+</section>
+
+<section class="features" id="features" aria-labelledby="features-h">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Why it works</p>
+      <h2 id="features-h">Built for the way content actually gets made.</h2>
+    </div>
+    <div class="features__grid">
+      <article class="feature-card">
+        <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg></div>
+        <h3>Proven structures, not raw prompts</h3>
+        <p>21+ templates across blog, social, email, ads, SEO, and sales — each one a battle-tested structure (hooks, CTAs, character limits, subject-line math) that's just been waiting for your specifics.</p>
+      </article>
+      <article class="feature-card">
+        <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+        <h3>Generate in minutes, watch it stream</h3>
+        <p>Click Generate and watch each section appear live. No 90-second spinner, no "processing…" fog. You see what's coming.</p>
+      </article>
+      <article class="feature-card">
+        <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg></div>
+        <h3>Regenerate one block, keep the rest</h3>
+        <p>The intro is right; the conclusion is weak. Regenerate just the conclusion — your tokens, your time, and the rest of the doc are untouched.</p>
+      </article>
+      <article class="feature-card">
+        <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.661 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.66 1.66 0 0 1 1.662-1.662h1.996c2.283 0 4.224-1.862 4.662-4.125C21.648 7.661 17.648 2 12 2z"/></svg></div>
+        <h3>Your brand voice, built in</h3>
+        <p>Tell the engine your brand voice once. Every generation — from cold outreach to listicle — writes in your register, not a generic AI register.</p>
+      </article>
+      <article class="feature-card">
+        <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg></div>
+        <h3>Export wherever it needs to go</h3>
+        <p>Markdown, HTML, PDF, or DOCX. Copy to clipboard for a CMS, drop a PDF in a proposal, ship HTML to a landing page.</p>
+      </article>
+      <article class="feature-card">
+        <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><circle cx="9" cy="14" r="3"/></svg></div>
+        <h3>Costs you can see</h3>
+        <p>Per-generation token cost, daily budget caps, and automatic downgrade to a faster model when you're near the cap. No surprise invoices.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="how" aria-labelledby="how-h">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Workflow</p>
+      <h2 id="how-h">Four steps. That's the whole workflow.</h2>
+    </div>
+    <ol class="how__grid">
+      <li class="step">
+        <span class="step__num" aria-hidden="true">01</span>
+        <h3>Pick a template</h3>
+        <p>Browse by category or search. Every template shows its variables up front, so you know exactly what it'll ask for.</p>
+        <span class="step__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+      </li>
+      <li class="step">
+        <span class="step__num" aria-hidden="true">02</span>
+        <h3>Fill in your details</h3>
+        <p>Audience, tone, product, key points. Thirty seconds of thinking beats an hour of drafting.</p>
+        <span class="step__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+      </li>
+      <li class="step">
+        <span class="step__num" aria-hidden="true">03</span>
+        <h3>Generate &amp; refine</h3>
+        <p>Sections stream in live. Anything that's off? Regenerate that block. Iterate until it's right.</p>
+        <span class="step__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+      </li>
+      <li class="step">
+        <span class="step__num" aria-hidden="true">04</span>
+        <h3>Export &amp; ship</h3>
+        <p>Markdown, HTML, PDF, or DOCX. Copy, save to your library, or reuse the template for the next campaign.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="showcase" id="templates" aria-labelledby="showcase-h">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">The library</p>
+      <h2 id="showcase-h">A library that covers your whole content calendar.</h2>
+      <p>21 templates at launch — and every category your calendar actually touches.</p>
+    </div>
+    <div class="showcase__grid">
+      <a class="show-card" href="template-library.html" style="--cat: var(--cat-blog)">
+        <div class="show-card__top"><span class="show-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span><span class="show-card__count">4 templates</span></div>
+        <h3>Blog &amp; Content</h3>
+        <p>Post outline · intro generator · conclusion writer · listicle builder</p>
+      </a>
+      <a class="show-card" href="template-library.html" style="--cat: var(--cat-social)">
+        <div class="show-card__top"><span class="show-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span><span class="show-card__count">4 templates</span></div>
+        <h3>Social</h3>
+        <p>LinkedIn post · Twitter/X thread · Instagram caption · Facebook ad</p>
+      </a>
+      <a class="show-card" href="template-library.html" style="--cat: var(--cat-email)">
+        <div class="show-card__top"><span class="show-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span><span class="show-card__count">4 templates</span></div>
+        <h3>Email</h3>
+        <p>Welcome sequence · nurture · promo · re-engagement</p>
+      </a>
+      <a class="show-card" href="template-library.html" style="--cat: var(--cat-ads)">
+        <div class="show-card__top"><span class="show-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></span><span class="show-card__count">3 templates</span></div>
+        <h3>Ads</h3>
+        <p>Google Search ad · Facebook ad variants · LinkedIn sponsored</p>
+      </a>
+      <a class="show-card" href="template-library.html" style="--cat: var(--cat-seo)">
+        <div class="show-card__top"><span class="show-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span><span class="show-card__count">3 templates</span></div>
+        <h3>SEO</h3>
+        <p>Meta descriptions · title tags · product descriptions</p>
+      </a>
+      <a class="show-card" href="template-library.html" style="--cat: var(--cat-sales)">
+        <div class="show-card__top"><span class="show-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 10H5"/><path d="M9 14h9.5a1 1 0 0 1 .8 1.6l-3.2 4.4a1 1 0 0 1-.8.4H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7.9a2 2 0 0 1 1.7.9l3.7 4.5a1 1 0 0 1-.8 1.6Z"/></svg></span><span class="show-card__count">3 templates</span></div>
+        <h3>Sales</h3>
+        <p>Cold outreach · follow-up · proposal intro</p>
+      </a>
+    </div>
+    <div class="showcase__cta"><a class="btn btn--ghost" href="template-library.html">Browse all templates
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .how { padding: 96px 0; background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .how__grid { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; counter-reset: step; }
+  .step { position: relative; background: var(--canvas); border: 1px solid var(--border); border-radius: var(--r-panel); padding: 28px 24px; }
+  .step__num { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 50%; background: var(--primary); color: #fff; font-weight: 800; font-size: 1rem; margin-bottom: 16px; }
+  .step h3 { font-size: 1.125rem; font-weight: 700; margin-bottom: 8px; }
+  .step p { font-size: 0.9375rem; color: var(--muted-fg); line-height: 1.6; }
+  .step__arrow { position: absolute; top: 44px; right: -22px; width: 20px; height: 20px; color: var(--faint-fg); z-index: 2; }
+  .step__arrow svg { width: 100%; height: 100%; }
+  .step:last-child .step__arrow { display: none; }
+
+  .showcase { padding: 96px 0; }
+  .showcase__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .show-card { display: block; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-panel); box-shadow: var(--shadow-sm); padding: 28px; text-decoration: none; color: var(--fg); transition: all 200ms ease; }
+  .show-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--border-strong); }
+  .show-card__top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+  .show-card__icon { width: 44px; height: 44px; border-radius: var(--r-md); display: flex; align-items: center; justify-content: center; background: color-mix(in srgb, var(--cat) 12%, white); color: var(--cat); }
+  .show-card__icon svg { width: 22px; height: 22px; }
+  .show-card__count { font-size: 0.75rem; font-weight: 600; color: var(--muted-fg); background: var(--surface-muted); padding: 4px 10px; border-radius: var(--r-pill); }
+  .show-card h3 { font-size: 1.125rem; font-weight: 700; margin-bottom: 6px; }
+  .show-card p { font-size: 0.875rem; color: var(--muted-fg); line-height: 1.6; }
+  .showcase__cta { display: flex; justify-content: flex-end; margin-top: 32px; }
+
+  @media (max-width: 1023px) {
+    .how__grid { grid-template-columns: repeat(2, 1fr); }
+    .step .step__arrow { display: none; }
+    .showcase__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 767px) {
+    .how__grid, .showcase__grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<section class="pricing" id="pricing" aria-labelledby="pricing-h">
+  <div class="container">
+    <div class="section-head" style="text-align:center; margin-left:auto; margin-right:auto;">
+      <p class="eyebrow">Pricing</p>
+      <h2 id="pricing-h">Start free. Upgrade when you're shipping.</h2>
+      <p style="margin-left:auto; margin-right:auto;">Your content volume grows. Your pricing shouldn't punish that.</p>
+    </div>
+    <div class="pricing__grid">
+      <article class="tier" aria-label="Free plan, zero dollars per month">
+        <h3>Free</h3>
+        <p class="tier__for">For testing the workflow</p>
+        <p class="tier__price">$0<span class="tier__per">/ month</span></p>
+        <ul class="tier__list">
+          <li>100 generations / month</li>
+          <li>1 workspace</li>
+          <li>All 21 launch templates</li>
+          <li>Markdown &amp; HTML export</li>
+        </ul>
+        <a class="btn btn--ghost btn--block" href="#">Start free</a>
+        <p class="tier__fine">No credit card required.</p>
+      </article>
+      <article class="tier tier--popular" aria-label="Pro plan, 29 dollars per month, most popular">
+        <span class="tier__badge">Most Popular</span>
+        <h3>Pro</h3>
+        <p class="tier__for">For solo marketers and small teams shipping daily</p>
+        <p class="tier__price">$29<span class="tier__per">/ month</span></p>
+        <ul class="tier__list">
+          <li>Unlimited generations</li>
+          <li>3 workspaces</li>
+          <li>All templates (launch + new)</li>
+          <li>Brand voice presets</li>
+          <li>Up to 5 team seats</li>
+          <li>Block-level regeneration</li>
+          <li>PDF &amp; DOCX export</li>
+        </ul>
+        <a class="btn btn--primary btn--block" href="#">Get Pro</a>
+        <p class="tier__fine">Billed monthly. Cancel anytime.</p>
+      </article>
+      <article class="tier" aria-label="Team plan, 79 dollars per month">
+        <h3>Team</h3>
+        <p class="tier__for">For agencies and marketing departments</p>
+        <p class="tier__price">$79<span class="tier__per">/ month</span></p>
+        <ul class="tier__list">
+          <li>Everything in Pro</li>
+          <li>10 seats</li>
+          <li>SSO</li>
+          <li>Priority support</li>
+          <li>Custom templates</li>
+        </ul>
+        <a class="btn btn--ghost btn--block" href="#">Talk to us</a>
+        <p class="tier__fine">Custom plans available for larger teams.</p>
+      </article>
+    </div>
+    <p class="pricing__note">Switch tiers any time. Usage-based caps never charge you for a generation you didn't start.</p>
+  </div>
+</section>
+
+<section class="faq" id="faq" aria-labelledby="faq-h">
+  <div class="container--narrow" style="padding-left:24px; padding-right:24px;">
+    <div class="section-head" style="text-align:center; margin-left:auto; margin-right:auto;">
+      <p class="eyebrow">FAQ</p>
+      <h2 id="faq-h">Questions, answered.</h2>
+    </div>
+    <div class="faq__list">
+      <details class="faq-item" open>
+        <summary>How is this different from just using ChatGPT?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+        </summary>
+        <p>You can ask ChatGPT for a "good LinkedIn post about X" and spend 20 minutes formatting the result. Our templates are pre-validated structures — hooks, character limits, subject-line length, CTA placement — with your variables wired in. You're not prompting; you're filling in a form that already knows what a good post looks like.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Can I really regenerate just one section?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+        </summary>
+        <p>Yes. Each AI-generated block is independently regenerable. Fix the conclusion without touching the intro. The rest of your document stays exactly as it was.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What formats can I export to?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+        </summary>
+        <p>Markdown and HTML on every tier. PDF and DOCX on Pro and Team. Everything copies to clipboard cleanly.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What does "generation" mean for usage caps?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+        </summary>
+        <p>One generation = one click of the Generate button, regardless of how many blocks the template has. Block-level regeneration is included and doesn't double-count.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What happens if I hit my monthly limit on Free?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+        </summary>
+        <p>You get a notice. Nothing is blocked or deleted — you can still edit existing outputs. Upgrade to Pro for unlimited, or wait for the monthly reset.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Can my team collaborate?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+        </summary>
+        <p>Pro supports up to 5 seats. Team supports 10, with SSO. Everyone in a workspace shares the same template library and generated outputs.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What happens to my data?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+        </summary>
+        <p>Your variables and generated outputs live in your workspace. We don't train on your content.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pricing { padding: 96px 0; background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .pricing__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: start; }
+  .tier { position: relative; background: var(--canvas); border: 1px solid var(--border); border-radius: var(--r-panel); padding: 32px 28px; }
+  .tier h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 4px; }
+  .tier__for { font-size: 0.875rem; color: var(--muted-fg); margin-bottom: 20px; }
+  .tier__price { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 20px; }
+  .tier__per { font-size: 1rem; font-weight: 500; color: var(--muted-fg); letter-spacing: 0; }
+  .tier__list { list-style: none; margin-bottom: 28px; display: flex; flex-direction: column; gap: 10px; }
+  .tier__list li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.9375rem; color: var(--fg); }
+  .tier__list li svg { width: 18px; height: 18px; color: var(--primary); flex-shrink: 0; margin-top: 2px; }
+  .tier__fine { font-size: 0.75rem; color: var(--muted-fg); text-align: center; margin-top: 12px; }
+  .tier--popular { background: var(--surface); border: 2px solid var(--primary); box-shadow: var(--shadow-lg); }
+  .tier__badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #fff; font-size: 0.75rem; font-weight: 600; padding: 5px 14px; border-radius: var(--r-pill); white-space: nowrap; }
+  .pricing__note { text-align: center; font-size: 0.875rem; color: var(--muted-fg); margin-top: 32px; }
+
+  .faq { padding: 96px 0; }
+  .faq__list { display: flex; flex-direction: column; gap: 12px; }
+  .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-card); box-shadow: var(--shadow-sm); padding: 20px 24px; transition: border-color 200ms ease; }
+  .faq-item[open] { border-color: var(--primary); }
+  .faq-item summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; cursor: pointer; font-size: 1rem; font-weight: 600; list-style: none; }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary svg { width: 18px; height: 18px; color: var(--muted-fg); flex-shrink: 0; transition: transform 300ms ease; }
+  .faq-item[open] summary svg { transform: rotate(45deg); }
+  .faq-item p { margin-top: 14px; font-size: 0.9375rem; color: var(--muted-fg); line-height: 1.7; }
+
+  @media (max-width: 1023px) {
+    .pricing__grid { grid-template-columns: 1fr 1fr; }
+    .tier--popular { order: -1; grid-column: 1 / -1; }
+  }
+  @media (max-width: 767px) { .pricing__grid { grid-template-columns: 1fr; } }
+</style>
+
+<section class="cta" aria-labelledby="cta-h">
+  <div class="cta__inner">
+    <h2 id="cta-h">Ship your next post in four minutes.</h2>
+    <p>Join the beta. 100 free generations a month, 21 launch templates, no credit card.</p>
+    <div class="cta__actions">
+      <a class="btn btn--accent" href="#pricing">Start free</a>
+      <a class="btn btn--ghost-light" href="template-library.html">Browse the template library</a>
+    </div>
+    <p class="cta__trust">Free tier forever · No credit card · Cancel anytime</p>
+  </div>
+</section>
+
+<footer class="footer" role="contentinfo">
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <a class="footer__logo" href="#"><span class="mark">NX</span> NXDSOL</a>
+      <p class="footer__tag">AI & Machine Learning Consulting · Hyderabad</p>
+    </div>
+    <nav class="footer__nav" aria-label="Footer">
+      <div class="footer__col">
+        <h4>Product</h4>
+        <ul><li><a href="#features">Features</a></li><li><a href="template-library.html">Templates</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#">Changelog</a></li></ul>
+      </div>
+      <div class="footer__col">
+        <h4>Company</h4>
+        <ul><li><a href="#">About</a></li><li><a href="#">Blog</a></li><li><a href="#">Careers</a></li><li><a href="#">Contact</a></li></ul>
+      </div>
+      <div class="footer__col">
+        <h4>Legal</h4>
+        <ul><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li><li><a href="#">Security</a></li></ul>
+      </div>
+    </nav>
+    <div class="footer__bottom">
+      <p>© 2026 NXDSOL. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .cta {
+    position: relative;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    color: #fff;
+    padding: 96px 24px;
+    overflow: hidden;
+  }
+  .cta::after { content: ""; position: absolute; inset: 0; background: rgba(15,23,42,0.45); pointer-events: none; }
+  .cta__inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; text-align: center; }
+  .cta h2 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; line-height: 1.2; margin-bottom: 16px; }
+  .cta p { font-size: 1.25rem; color: rgba(255,255,255,0.85); margin-bottom: 28px; }
+  .cta__actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
+  .cta__trust { font-size: 0.875rem; color: rgba(255,255,255,0.6); }
+
+  .footer { background: var(--surface); border-top: 1px solid var(--border); }
+  .footer__inner { max-width: 1200px; margin: 0 auto; padding: 64px 24px 32px; }
+  .footer__brand { margin-bottom: 48px; }
+  .footer__logo { display: inline-flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.125rem; color: var(--fg); text-decoration: none; }
+  .footer__logo .mark { width: 32px; height: 32px; border-radius: var(--r-sm); background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 0.8125rem; font-weight: 800; }
+  .footer__tag { font-size: 0.875rem; color: var(--muted-fg); margin-top: 8px; max-width: 280px; }
+  .footer__nav { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-bottom: 48px; }
+  .footer__col h4 { font-size: 0.875rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted-fg); margin-bottom: 16px; }
+  .footer__col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer__col a { font-size: 0.9375rem; color: var(--fg); text-decoration: none; transition: color 200ms ease; }
+  .footer__col a:hover { color: var(--primary); }
+  .footer__bottom { padding-top: 24px; border-top: 1px solid var(--border); text-align: center; font-size: 0.8125rem; color: var(--faint-fg); }
+</style>
+
+</body>
+</html>
